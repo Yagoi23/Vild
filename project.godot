@@ -60,4 +60,4 @@ jump={
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_clear_color=Color( 1, 1, 1, 1 )
