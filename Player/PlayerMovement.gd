@@ -4,7 +4,7 @@ const GRAVITY = 10
 const JUMP_FORCE = -200
 const MAX_FALL_SPEED = 1000
 
-const GROUND_SPEED = 50
+const GROUND_SPEED = 100
 
 var MOVE_SPEED = 0
 
