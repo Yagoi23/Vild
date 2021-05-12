@@ -1,9 +1,12 @@
 extends KinematicBody2D
 
-const GRAVITY = 50
-const JUMP_FORCE = -500
+const GRAVITY = 10
+const JUMP_FORCE = -200
 const MAX_FALL_SPEED = 1000
-const MOVE_SPEED = 50
+
+const GROUND_SPEED = 50
+
+var MOVE_SPEED = 0
 
 var y_velo = 0
 
@@ -17,10 +20,16 @@ func _physics_process(delta):
 	
 	var grounded = is_on_floor()
 	y_velo += GRAVITY
-	if grounded and Input.is_action_pressed("jump"):
+	#if grounded and Input.is_action_pressed("jump"):
+	if Input.is_action_just_pressed("jump"):
 		y_velo += JUMP_FORCE
 	if grounded and y_velo >= 5:
 		y_velo = 5
 	if y_velo > MAX_FALL_SPEED:
 		y_velo = MAX_FALL_SPEED
+	
+	if grounded and MOVE_SPEED > GROUND_SPEED:
+		MOVE_SPEED = GROUND_SPEED
+	if not grounded:
+		MOVE_SPEED += 1
 
