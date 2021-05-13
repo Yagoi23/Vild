@@ -5,6 +5,7 @@ const JUMP_FORCE = -200
 const MAX_FALL_SPEED = 1000
 
 const GROUND_SPEED = 100
+const MAX_MOVE_SPEED = 1000
 
 var MOVE_SPEED = 0
 
@@ -32,4 +33,6 @@ func _physics_process(delta):
 		MOVE_SPEED = GROUND_SPEED
 	if not grounded:
 		MOVE_SPEED += 1
+	if MOVE_SPEED > MAX_MOVE_SPEED:
+		MOVE_SPEED = MAX_MOVE_SPEED
 
