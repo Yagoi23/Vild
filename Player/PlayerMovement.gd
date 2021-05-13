@@ -20,6 +20,12 @@ func _physics_process(delta):
 	move_and_slide(Vector2(move_dir * MOVE_SPEED, y_velo),Vector2(0, -1))
 	
 	var grounded = is_on_floor()
+	
+	if grounded:
+		MOVE_SPEED = GROUND_SPEED
+	elif not grounded:
+		MOVE_SPEED += 1
+	
 	y_velo += GRAVITY
 	#if grounded and Input.is_action_pressed("jump"):
 	if Input.is_action_just_pressed("jump"):
@@ -29,10 +35,6 @@ func _physics_process(delta):
 	if y_velo > MAX_FALL_SPEED:
 		y_velo = MAX_FALL_SPEED
 	
-	if grounded and MOVE_SPEED > GROUND_SPEED:
-		MOVE_SPEED = GROUND_SPEED
-	if not grounded:
-		MOVE_SPEED += 1
 	if MOVE_SPEED > MAX_MOVE_SPEED:
 		MOVE_SPEED = MAX_MOVE_SPEED
 

@@ -13,10 +13,13 @@ config_version=4
 config/name="Vild"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayerMovement="*res://Player/PlayerMovement.gd"
+
 [display]
 
 window/size/resizable=false
-window/size/fullscreen=true
 
 [importer_defaults]
 
