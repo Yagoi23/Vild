@@ -54,8 +54,4 @@ func move_normal():
 
 
 
-func _on_Area2D_area_entered(area, body):
-	if body.is_in_group("Player"):
-		IN_WATER = true
-	else:
-		IN_WATER = false
+
