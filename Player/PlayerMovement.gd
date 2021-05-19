@@ -1,14 +1,24 @@
 extends KinematicBody2D
 
 const GRAVITY = 10
+const WATER_GRAV = 2
+const WATER_JUMP_FORCE = -100
 const JUMP_FORCE = -200
+
 const MAX_FALL_SPEED = 1000
+const MAX_SINK_SPEED = 100
 
 const GROUND_SPEED = 100
 const MAX_MOVE_SPEED = 1000
+const MAX_WATER_MOVE_SPEED = 50
+
+
 
 var MOVE_SPEED = 0
-
+onready var grav = GRAVITY
+onready var jump = JUMP_FORCE
+onready var max_fall = MAX_FALL_SPEED
+onready var max_move_speed = MAX_MOVE_SPEED
 var y_velo = 0
 var move_dir = 0
 
@@ -16,12 +26,7 @@ var IN_WATER = false
 
 func _physics_process(delta):
 	move_dir = 0
-	if IN_WATER == true:
-		y_velo += JUMP_FORCE
-		move_dir = 10
-		move_and_slide(Vector2(move_dir * MOVE_SPEED, y_velo),Vector2(0, -1))
-	else:
-		move_normal()
+	move_normal()
 	
 func move_normal():
 	if Input.is_action_pressed("move_right"):
@@ -37,17 +42,18 @@ func move_normal():
 	elif not grounded:
 		MOVE_SPEED += 1
 	
-	y_velo += GRAVITY
+	y_velo += grav
+	y_velo = clamp(y_velo,jump, max_fall)
 	#if grounded and Input.is_action_pressed("jump"):
 	if Input.is_action_just_pressed("jump"):
-		y_velo += JUMP_FORCE
+		y_velo += jump
 	if grounded and y_velo >= 5:
 		y_velo = 5
-	if y_velo > MAX_FALL_SPEED:
-		y_velo = MAX_FALL_SPEED
+	if y_velo > max_fall:
+		y_velo = max_fall
 	
-	if MOVE_SPEED > MAX_MOVE_SPEED:
-		MOVE_SPEED = MAX_MOVE_SPEED
+	if MOVE_SPEED > max_move_speed:
+		MOVE_SPEED = max_move_speed
 
 
 
@@ -55,3 +61,23 @@ func move_normal():
 
 
 
+
+
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("Water"):
+		print("water") # Replace with function body.
+		grav = WATER_GRAV
+		jump = WATER_JUMP_FORCE
+		max_fall = MAX_SINK_SPEED
+		max_move_speed = MAX_WATER_MOVE_SPEED
+
+
+func _on_Area2D_area_exited(area):
+	if area.is_in_group("Water"):
+		print("exit water") # Replace with function body.
+		y_velo += JUMP_FORCE
+		grav = GRAVITY
+		jump = JUMP_FORCE
+		max_fall = MAX_FALL_SPEED
+		max_move_speed = MAX_MOVE_SPEED
+		
