@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/NPC/LegFish.png" type="Texture" id=1]
+[ext_resource path="res://Assets/tinypixel.otf" type="DynamicFontData" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Leg Fish Idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Rect2( 0, 0, 16, 16 ), Rect2( 16, 0, 16, 16 ), Rect2( 32, 0, 16, 16 ) ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[node name="Leg Fish" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 32, 0, 16, 16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/Leg Fish Idle" = SubResource( 1 )
+
+[node name="Speech Box" type="ColorRect" parent="."]
+margin_left = -10.8318
+margin_top = -17.2496
+margin_right = 29.1682
+margin_bottom = 22.7504
+rect_scale = Vector2( 0.589666, 0.165049 )
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Speech Box"]
+margin_left = 1.0
+margin_top = 3.0
+margin_right = 66.0
+margin_bottom = 85.0
+rect_scale = Vector2( 0.589666, 0.407401 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Speech Box"]
+margin_left = 1.0
+margin_top = 15.1772
+margin_right = 41.0
+margin_bottom = 29.1772
+custom_fonts/font = SubResource( 2 )

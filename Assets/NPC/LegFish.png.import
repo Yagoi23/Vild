@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Maggot.png-356375b9f769aecc90356a743951f71d.stex"
+path="res://.import/LegFish.png-05566418aa8524cb38134fa7acbfbde3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Maggot.png"
-dest_files=[ "res://.import/Maggot.png-356375b9f769aecc90356a743951f71d.stex" ]
+source_file="res://Assets/NPC/LegFish.png"
+dest_files=[ "res://.import/LegFish.png-05566418aa8524cb38134fa7acbfbde3.stex" ]
 
 [params]
 
