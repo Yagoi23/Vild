@@ -44,8 +44,10 @@ __meta__ = {
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
-margin_right = 100.0
-margin_bottom = 10.0
+margin_left = 0.132431
+margin_top = 4.10542
+margin_right = 100.132
+margin_bottom = 14.1054
 custom_styles/fg = SubResource( 2 )
 custom_styles/bg = SubResource( 3 )
 value = 90.0
