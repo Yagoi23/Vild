@@ -12,7 +12,8 @@ const GROUND_SPEED = 100
 const MAX_MOVE_SPEED = 1000
 const MAX_WATER_MOVE_SPEED = 50
 
-
+var knockback = 0
+var is_knockback
 
 var MOVE_SPEED = 0
 onready var grav = GRAVITY
@@ -26,22 +27,22 @@ var IN_WATER = false
 
 func _physics_process(delta):
 	move_dir = 0
-	move_normal()
-	
+	if is_knockback == true:
+		knockback_player()
+	else:
+		move_normal()
+
 func move_normal():
 	if Input.is_action_pressed("move_right"):
 		move_dir += 1
 	if Input.is_action_pressed("move_left"):
 		move_dir -= 1
 	move_and_slide(Vector2(move_dir * MOVE_SPEED, y_velo),Vector2(0, -1))
-	
 	var grounded = is_on_floor()
-	
 	if grounded:
 		MOVE_SPEED = GROUND_SPEED
 	elif not grounded:
 		MOVE_SPEED += 1
-	
 	y_velo += grav
 	y_velo = clamp(y_velo,jump, max_fall)
 	#if grounded and Input.is_action_pressed("jump"):
@@ -51,17 +52,24 @@ func move_normal():
 		y_velo = 5
 	if y_velo > max_fall:
 		y_velo = max_fall
-	
 	if MOVE_SPEED > max_move_speed:
 		MOVE_SPEED = max_move_speed
 
+func knockback_player():
+	move_dir = knockback
+	MOVE_SPEED = 200
+	y_velo += grav
+	y_velo = clamp(y_velo,jump, max_fall)
+	y_velo += jump
+	print("knock back")
+	is_knockback = false
+	move_and_slide(Vector2(move_dir * MOVE_SPEED, y_velo),Vector2(0, -1))
 
-
-
-
-
-
-
+func hit_player(ammount,dir):
+	PlayerStats.Health -= ammount
+	knockback = dir
+	is_knockback = true
+	print(PlayerStats.Health)
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Water"):
@@ -71,7 +79,6 @@ func _on_Area2D_area_entered(area):
 		max_fall = MAX_SINK_SPEED
 		max_move_speed = MAX_WATER_MOVE_SPEED
 
-
 func _on_Area2D_area_exited(area):
 	if area.is_in_group("Water"):
 		print("exit water") # Replace with function body.
@@ -80,4 +87,3 @@ func _on_Area2D_area_exited(area):
 		jump = JUMP_FORCE
 		max_fall = MAX_FALL_SPEED
 		max_move_speed = MAX_MOVE_SPEED
-		
