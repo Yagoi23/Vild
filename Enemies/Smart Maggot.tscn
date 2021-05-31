@@ -48,10 +48,21 @@ position = Vector2( 6.06754, 0 )
 enabled = true
 cast_to = Vector2( 0, 2 )
 
-[node name="HitZone" type="Area2D" parent="."]
+[node name="HitZone Left" type="Area2D" parent="."]
+position = Vector2( -4.03385, 0.0350761 )
+scale = Vector2( 0.5, 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitZone Left"]
 position = Vector2( 0, -2.4411 )
 shape = SubResource( 3 )
 
-[connection signal="body_entered" from="HitZone" to="." method="_on_HitZone_body_entered"]
+[node name="HitZone Right" type="Area2D" parent="."]
+position = Vector2( 4.06892, 0.0350761 )
+scale = Vector2( 0.5, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitZone Right"]
+position = Vector2( 0, -2.4411 )
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="HitZone Left" to="." method="_on_HitZone_Left_body_entered"]
+[connection signal="body_entered" from="HitZone Right" to="." method="_on_HitZone_Right_body_entered"]
