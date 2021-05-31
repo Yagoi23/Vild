@@ -252,3 +252,5 @@ position = Vector2( 1104, -64 )
 
 [node name="Leg Fish" parent="." instance=ExtResource( 7 )]
 position = Vector2( 888, -32 )
+
+[node name="Node" type="Node" parent="."]
