@@ -16,14 +16,16 @@ export (float,0,1,0) var acceleration = 25
 export (float,0,1,0) var water_acceleration = 5
 export (float,0,1,0) var water_friction = 100
 
-enum state {RUNNING, JUMP, IDLE, SWIMMING, FALL}
+enum state {RUNNING, JUMP, IDLE, SWIMMING, FALL, KNOCKBACK}
 
 var player_state = state.IDLE
+
+var move_dir
 
 var in_water = false
 
 func get_input():
-	var move_dir = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	move_dir = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if in_water == false:
 		if move_dir != 0:
 			velocity.x = move_toward(velocity.x,move_dir*speed,acceleration)
@@ -43,7 +45,6 @@ func _physics_process(delta):
 			player_state = state.IDLE
 		elif velocity.x != 0:
 			player_state = state.RUNNING
-		
 		if is_on_floor():
 			if Input.is_action_just_pressed("jump"):
 				velocity.y = jump_speed
@@ -63,16 +64,21 @@ func _physics_process(delta):
 		velocity = move_and_slide(velocity, Vector2.UP)
 	
 
-func hit_player(ammount,dir):
-	PlayerStats.Health -= ammount
+#func hit_player():
+	#pass
+	#PlayerStats.Health -= ammount
+	#player_state = state.KNOCKBACK
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Water"):
 		print("water") # Replace with function body.
 		in_water = true
+	elif area.is_in_group("Enemy"):
+		velocity.y = jump_speed
 
 
 func _on_Area2D_area_exited(area):
 	if area.is_in_group("Water"):
 		print("exit water") # Replace with function body.
+		velocity.y = jump_speed
 		in_water = false
