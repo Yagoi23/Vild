@@ -20,14 +20,18 @@ func _physics_process(delta):
 		dir = dir * -1
 		$RayCast2D.position *= -1
 
-#func _on_HitZone_Right_body_entered(body):
-#	if body.is_in_group("Player"):
-#		print("hit player right")
+func _on_HitZone_Right_body_entered(body):
+	if body.is_in_group("Player"):
+		print("hit player right")
+		PlayerMovement.player_state = PlayerMovement.state.KNOCKBACK
 #		PlayerMovement.hit_player()
 
 
 
-#func _on_HitZone_Left_body_entered(body):
+func _on_HitZone_Left_body_entered(body):
+	if body.is_in_group("Player"):
+		print("hit player left")
+		PlayerMovement.player_state = PlayerMovement.state.KNOCKBACK
 #	if body.is_in_group("Player"):
 #		print("hit player left")
 #		#PlayerMovement.hit_player(10,100)
