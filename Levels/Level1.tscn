@@ -18,6 +18,9 @@ extents = Vector2( 176, 40 )
 
 [node name="Level1" type="Node2D"]
 
+[node name="Leg Fish" parent="." instance=ExtResource( 7 )]
+position = Vector2( 888, -32 )
+
 [node name="Physics Objects" type="Node2D" parent="."]
 visible = false
 
@@ -252,8 +255,5 @@ position = Vector2( 1104, -64 )
 
 [node name="Smart Maggot5" parent="." instance=ExtResource( 6 )]
 position = Vector2( 1152, 32 )
-
-[node name="Leg Fish" parent="." instance=ExtResource( 7 )]
-position = Vector2( 888, -32 )
 
 [node name="Node" type="Node" parent="."]
