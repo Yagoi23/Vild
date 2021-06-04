@@ -52,7 +52,9 @@ position = Vector2( 6.06754, 0 )
 enabled = true
 cast_to = Vector2( 0, 2 )
 
-[node name="HitZone Left" type="Area2D" parent="."]
+[node name="HitZone Left" type="Area2D" parent="." groups=[
+"Enemy",
+]]
 position = Vector2( -4.03385, 0.0350761 )
 scale = Vector2( 0.5, 1 )
 
@@ -60,7 +62,9 @@ scale = Vector2( 0.5, 1 )
 position = Vector2( 0, -2.4411 )
 shape = SubResource( 3 )
 
-[node name="HitZone Right" type="Area2D" parent="."]
+[node name="HitZone Right" type="Area2D" parent="." groups=[
+"Enemy",
+]]
 position = Vector2( 4.06892, 0.0350761 )
 scale = Vector2( 0.5, 1 )
 

@@ -226,6 +226,7 @@ tile_data = PoolIntArray( -1769451, 536870912, 0, -1703917, 536870912, 0, -17039
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -56, -24 )
+water_gravity = -10
 
 [node name="Maggot" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1168, 30.2739 )

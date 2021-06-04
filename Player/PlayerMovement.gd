@@ -4,7 +4,7 @@ export (int) var speed = 120
 export (int) var jump_speed = -180
 export (int) var gravity = 400
 
-export (int) var water_gravity = 10
+export (int) var water_gravity = -100
 export (int) var water_jump_speed = -80
 export (int) var water_speed = 60
 
@@ -24,6 +24,8 @@ var move_dir
 
 var in_water = false
 
+var counter = 0
+
 func get_input():
 	move_dir = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if player_state != state.KNOCKBACK and player_state != state.SWIMMING:
@@ -38,44 +40,47 @@ func get_input():
 			velocity.x = move_toward(velocity.x, 0, water_friction)
 
 func _physics_process(delta):
-	#print(velocity)
-	#print(player_state)
-	get_input()
-	if player_state == state.KNOCKBACK:
-		print("knockback 2")
-		velocity.y = jump_speed
-		velocity = move_and_slide(velocity, Vector2.UP)
-		print(player_state)
-		#player_state = state.JUMP
-		print(player_state)
-		#$Sprite.visible
-	elif player_state == state.SWIMMING:
-		if Input.is_action_just_pressed("jump"):
-				velocity.y = water_jump_speed
-		velocity.y += water_gravity * delta
-		velocity = move_and_slide(velocity, Vector2.UP)
-	elif player_state != state.KNOCKBACK and player_state != state.SWIMMING:
-		if velocity.x == 0:
-			player_state = state.IDLE
-		elif velocity.x != 0:
-			player_state = state.RUNNING
-		if is_on_floor():
-			player_state = state.IDLE
+	print(state.keys()[player_state])
+	if player_state != state.KNOCKBACK:
+		get_input()
+		
+		if player_state == state.SWIMMING:
 			if Input.is_action_just_pressed("jump"):
+					velocity.y = water_jump_speed
+			velocity.y += water_gravity * delta
+			velocity = move_and_slide(velocity, Vector2.UP)
+
+		elif player_state != state.SWIMMING:
+			if velocity.x == 0:
+				player_state = state.IDLE
+			elif velocity.x != 0:
+				player_state = state.RUNNING
+			if is_on_floor() and Input.is_action_just_pressed("jump"):
 				velocity.y = jump_speed
 				player_state = state.JUMP
-		#if is_on_wall():
-		#	velocity.y = jump_speed
-		#	player_state = state.JUMP
-		
-		if velocity.y < 0:
-			player_state = state.JUMP
-		else:
-			player_state = state.FALL
+			if not is_on_floor():
+				if velocity.y <= 0:
+					player_state = state.JUMP
+				else:
+					player_state = state.FALL
 		
 		velocity.y += gravity * delta
 		velocity = move_and_slide(velocity, Vector2.UP)
-
+	elif player_state == state.KNOCKBACK:
+		if counter == 0:
+			velocity.y = jump_speed
+		counter += 1
+		if $Sprite.visible == true:
+			$Sprite.visible = false
+		else:
+			$Sprite.visible = true
+		velocity.y += gravity * delta
+		velocity = move_and_slide(velocity, Vector2.UP)
+		print(counter)
+		if counter == 60:
+			player_state = state.JUMP
+			counter = 0
+			$Sprite.visible = true
 	
 
 #func hit_player():
@@ -86,9 +91,10 @@ func _physics_process(delta):
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Water"):
 		print("water") # Replace with function body.
-		velocity.y = 25
+		velocity.y = 0
 		player_state = state.SWIMMING
 	elif area.is_in_group("Enemy"):
+		counter = 0
 		print("knockback")
 		player_state = state.KNOCKBACK
 
@@ -98,4 +104,4 @@ func _on_Area2D_area_exited(area):
 		print("exit water") # Replace with function body.
 		velocity.y = -200
 		player_state = state.FALL
-		
+
