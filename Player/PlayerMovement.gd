@@ -4,7 +4,7 @@ export (int) var speed = 120
 export (int) var jump_speed = -180
 export (int) var gravity = 400
 
-export (int) var water_gravity = -100
+export (int) var water_gravity = 100
 export (int) var water_jump_speed = -80
 export (int) var water_speed = 60
 
@@ -43,13 +43,17 @@ func _physics_process(delta):
 	print(state.keys()[player_state])
 	if player_state != state.KNOCKBACK:
 		get_input()
-		
+#------------------------------------------------------------------------------
+#SWIMMING
+#------------------------------------------------------------------------------
 		if player_state == state.SWIMMING:
 			if Input.is_action_just_pressed("jump"):
 					velocity.y = water_jump_speed
 			velocity.y += water_gravity * delta
 			velocity = move_and_slide(velocity, Vector2.UP)
-
+#------------------------------------------------------------------------------
+#Normal
+#------------------------------------------------------------------------------
 		elif player_state != state.SWIMMING:
 			if velocity.x == 0:
 				player_state = state.IDLE
@@ -64,11 +68,14 @@ func _physics_process(delta):
 				else:
 					player_state = state.FALL
 		
-		velocity.y += gravity * delta
-		velocity = move_and_slide(velocity, Vector2.UP)
+			velocity.y += gravity * delta
+			velocity = move_and_slide(velocity, Vector2.UP)
+#------------------------------------------------------------------------------
+#Knockback
+#------------------------------------------------------------------------------
 	elif player_state == state.KNOCKBACK:
 		if counter == 0:
-			velocity.y = jump_speed
+			velocity.y = -180 - rand_range(0,100)
 		counter += 1
 		if $Sprite.visible == true:
 			$Sprite.visible = false
@@ -76,7 +83,7 @@ func _physics_process(delta):
 			$Sprite.visible = true
 		velocity.y += gravity * delta
 		velocity = move_and_slide(velocity, Vector2.UP)
-		print(counter)
+		#print(counter)
 		if counter == 60:
 			player_state = state.JUMP
 			counter = 0
@@ -89,10 +96,12 @@ func _physics_process(delta):
 	#player_state = state.KNOCKBACK
 
 func _on_Area2D_area_entered(area):
+	
 	if area.is_in_group("Water"):
-		print("water") # Replace with function body.
-		velocity.y = 0
-		player_state = state.SWIMMING
+		if player_state != state.KNOCKBACK:
+			print("water") # Replace with function body.
+			velocity.y = 25
+			player_state = state.SWIMMING
 	elif area.is_in_group("Enemy"):
 		counter = 0
 		print("knockback")
