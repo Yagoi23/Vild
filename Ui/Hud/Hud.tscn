@@ -1,58 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene format=2]
 
-[ext_resource path="res://Assets/Font/tinypixel.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Ui/Hud/Hud.gd" type="Script" id=2]
-
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 1, 1, 1, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_bottom = 1
-border_color = Color( 0, 0, 0, 1 )
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0, 0, 0, 1 )
-
-[node name="Hud" type="Control"]
-margin_right = 2048.0
-margin_bottom = 1200.0
-script = ExtResource( 2 )
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1024.0
-margin_bottom = 24.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
 
-[node name="Label" type="Label" parent="."]
-margin_left = 104.0
-margin_right = 169.0
-margin_bottom = 19.0
-custom_fonts/font = SubResource( 1 )
-text = "Stamina"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ProgressBar" type="ProgressBar" parent="."]
-margin_left = 0.132431
-margin_top = 4.10542
-margin_right = 100.132
-margin_bottom = 14.1054
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
-value = 90.0
-rounded = true
+[node name="ProgressBar" type="ProgressBar" parent="ViewportContainer"]
+margin_right = 88.0
+margin_bottom = 14.0
 percent_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}

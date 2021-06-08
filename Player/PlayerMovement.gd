@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 export (int) var speed = 120
 export (int) var jump_speed = -180
+export (int) var climb_speed = 0
 export (int) var gravity = 400
 
 export (int) var water_gravity = 100
@@ -16,7 +17,7 @@ export (float,0,1,0) var acceleration = 25
 export (float,0,1,0) var water_acceleration = 5
 export (float,0,1,0) var water_friction = 100
 
-enum state {RUNNING, JUMP, IDLE, SWIMMING, FALL, KNOCKBACK}
+enum state {RUNNING, JUMP, IDLE, SWIMMING, FALL, KNOCKBACK, CLIMBING}
 
 var player_state = state.IDLE
 
@@ -40,7 +41,7 @@ func get_input():
 			velocity.x = move_toward(velocity.x, 0, water_friction)
 
 func _physics_process(delta):
-	print(state.keys()[player_state])
+	#print(state.keys()[player_state])
 	if player_state != state.KNOCKBACK:
 		get_input()
 #------------------------------------------------------------------------------
@@ -67,6 +68,9 @@ func _physics_process(delta):
 					player_state = state.JUMP
 				else:
 					player_state = state.FALL
+			if is_on_wall():
+				player_state = state.CLIMBING
+				velocity.y = climb_speed
 		
 			velocity.y += gravity * delta
 			velocity = move_and_slide(velocity, Vector2.UP)
@@ -98,11 +102,12 @@ func _physics_process(delta):
 func _on_Area2D_area_entered(area):
 	
 	if area.is_in_group("Water"):
-		if player_state != state.KNOCKBACK:
-			print("water") # Replace with function body.
-			velocity.y = 25
-			player_state = state.SWIMMING
-	elif area.is_in_group("Enemy"):
+		#if player_state != state.KNOCKBACK:
+		print("water") # Replace with function body.
+		velocity.y = 25
+		player_state = state.SWIMMING
+
+	if area.is_in_group("Enemy"):
 		counter = 0
 		print("knockback")
 		player_state = state.KNOCKBACK
