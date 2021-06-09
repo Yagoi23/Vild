@@ -4,6 +4,7 @@
 
 [node name="Camera2D" type="Camera2D"]
 current = true
+zoom = Vector2( 0.5, 0.5 )
 
 [node name="Control" parent="." instance=ExtResource( 2 )]
 anchor_right = 0.0
