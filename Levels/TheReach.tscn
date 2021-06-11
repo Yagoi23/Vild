@@ -22,6 +22,18 @@ extents = Vector2( 10, 16 )
 
 [node name="Level1" type="Node2D"]
 
+[node name="WorldEnvironment" type="CanvasModulate" parent="."]
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="WorldEnvironment"]
+margin_left = -371.0
+margin_top = -457.0
+margin_right = 2765.0
+margin_bottom = 1099.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Physics Objects" type="Node2D" parent="."]
 visible = false
 
