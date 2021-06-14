@@ -7,13 +7,15 @@ func _process(delta):
 		print("travelled")
 		get_tree().change_scene("res://Levels/TheNachoRoom.tscn")
 
-func _on_Area2D_body_entered(body):
-	can_travel = true
-	print("yes")
+func _on_Area2D_area_entered(area):
+	if area.is_in_group("Player"):
+		can_travel = true
+		print("yes")
 	#pass # Replace with function body.
 
 
-func _on_Area2D_body_exited(body):
-	can_travel = false
-	print("no")
+func _on_Area2D_area_exited(area):
+	if area.is_in_group("Player"):
+		can_travel = false
+		print("no")
 	#pass # Replace with function body.

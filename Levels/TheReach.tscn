@@ -287,5 +287,5 @@ shape = SubResource( 4 )
 [node name="Arrow Down" parent="Exits/Sewer Entrance 1/Area2D" instance=ExtResource( 2 )]
 position = Vector2( 0, -16 )
 
-[connection signal="body_entered" from="Exits/Sewer Entrance 1/Area2D" to="Exits/Sewer Entrance 1/Area2D" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Exits/Sewer Entrance 1/Area2D" to="Exits/Sewer Entrance 1/Area2D" method="_on_Area2D_body_exited"]
+[connection signal="area_entered" from="Exits/Sewer Entrance 1/Area2D" to="Exits/Sewer Entrance 1/Area2D" method="_on_Area2D_area_entered"]
+[connection signal="area_exited" from="Exits/Sewer Entrance 1/Area2D" to="Exits/Sewer Entrance 1/Area2D" method="_on_Area2D_area_exited"]
