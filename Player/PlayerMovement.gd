@@ -60,7 +60,8 @@ func _physics_process(delta):
 				player_state = state.IDLE
 			elif velocity.x != 0:
 				player_state = state.RUNNING
-			if is_on_floor() and Input.is_action_just_pressed("jump"):
+			#if is_on_floor() and Input.is_action_just_pressed("jump"):
+			if Input.is_action_just_pressed("jump"):
 				velocity.y = jump_speed
 				player_state = state.JUMP
 			if not is_on_floor():
@@ -68,7 +69,10 @@ func _physics_process(delta):
 					player_state = state.JUMP
 				else:
 					player_state = state.FALL
-			if is_on_wall():
+			if is_on_wall() and Input.is_action_just_pressed("jump"):
+				velocity.y = jump_speed
+				player_state = state.JUMP
+			elif is_on_wall():
 				player_state = state.CLIMBING
 				velocity.y = climb_speed
 		
