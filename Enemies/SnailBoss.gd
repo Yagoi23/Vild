@@ -10,7 +10,7 @@ var dir = 1
 
 func _physics_process(delta):
 	velocity.x = SPEED * dir
-	$AnimationPlayer.play("Maggot Crawl")
+	#$AnimationPlayer.play("Maggot Crawl")
 	velocity.y = GRAVITY
 	velocity = move_and_slide(velocity, FLOOR)
 	if is_on_wall():
