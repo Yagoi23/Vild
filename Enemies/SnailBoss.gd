@@ -13,10 +13,13 @@ var counter = 0
 enum state {MOVING, SHOOTING, DEPLOYINGGUN, UNDEPLOYINGGUN}
 var snailboss_state = state.MOVING
 
+func _ready():
+	$Bullets.emitting = false
+
 func _physics_process(delta):
 	if snailboss_state == state.MOVING:
 		counter += 1
-		if counter >= 60:
+		if counter >= 120:
 			counter = 0
 			snailboss_state = state.DEPLOYINGGUN
 		$AnimationPlayer.play("SnailBossMove")
@@ -30,6 +33,7 @@ func _physics_process(delta):
 			elif $Sprite.flip_h == false:
 				$Sprite.flip_h = true
 			dir = dir * -1
+			$Bullets.position.x *= -1
 	elif snailboss_state == state.DEPLOYINGGUN:
 		$AnimationPlayer.play("SnailBossDeployGun")
 		counter += 1
@@ -43,8 +47,10 @@ func _physics_process(delta):
 			counter = 0
 			snailboss_state = state.MOVING
 	elif snailboss_state == state.SHOOTING:
+		$Bullets.emitting = true
 		$AnimationPlayer.play("SnailBossShoot")
 		counter += 1
 		if counter >= 60:
 			counter = 0
+			$Bullets.emitting = false
 			snailboss_state = state.UNDEPLOYINGGUN
