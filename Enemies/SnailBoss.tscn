@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Enemies/BossSnail.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/SnailBoss.gd" type="Script" id=2]
 [ext_resource path="res://Particles/Bullets.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/MuzzleFlash.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 21.7782, 31.2377 )
@@ -110,7 +111,14 @@ frame = 10
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( -7.02803, -10.3865 )
 rotation = 1.57079
-scale = Vector2( 1.18201, 1.76318 )
+scale = Vector2( 1.18201, 11.3232 )
 
 [node name="Bullets" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1.82876, -10.4416 )
+emitting = false
+
+[node name="MuzzleFlash" type="Sprite" parent="."]
+visible = false
+position = Vector2( -9.104, -10.8718 )
+scale = Vector2( 0.370233, 0.381282 )
+texture = ExtResource( 4 )
