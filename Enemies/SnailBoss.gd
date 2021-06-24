@@ -12,6 +12,8 @@ var counter = 0
 onready var SPRITE = $Sprite
 onready var MUZZLEFLASH = $MuzzleFlash
 onready var BULLET_PARTICLE = $Bullets
+onready var RAYCAST = $RayCast2D
+onready var ANIMATIONPLAYER = $AnimationPlayer
 enum state {MOVING, SHOOTING, DEPLOYINGGUN, UNDEPLOYINGGUN}
 var snailboss_state = state.MOVING
 
@@ -24,7 +26,7 @@ func _physics_process(delta):
 		if counter >= 120:
 			counter = 0
 			snailboss_state = state.DEPLOYINGGUN
-		$AnimationPlayer.play("SnailBossMove")
+		ANIMATIONPLAYER.play("SnailBossMove")
 		velocity.x = SPEED * dir
 		#$AnimationPlayer.play("Maggot Crawl")
 		velocity.y = GRAVITY
@@ -42,33 +44,33 @@ func _physics_process(delta):
 			elif MUZZLEFLASH.flip_h == false:
 				MUZZLEFLASH.flip_h = true
 	elif snailboss_state == state.DEPLOYINGGUN:
-		$AnimationPlayer.play("SnailBossDeployGun")
+		ANIMATIONPLAYER.play("SnailBossDeployGun")
 		counter += 1
 		if counter >= 60:
 			counter = 0
 			snailboss_state = state.SHOOTING
 	elif snailboss_state == state.UNDEPLOYINGGUN:
-		$AnimationPlayer.play_backwards("SnailBossDeployGun")
+		ANIMATIONPLAYER.play_backwards("SnailBossDeployGun")
 		counter += 1
 		if counter >= 60:
 			counter = 0
 			snailboss_state = state.MOVING
 	elif snailboss_state == state.SHOOTING:
 		BULLET_PARTICLE.emitting = true
-		$AnimationPlayer.play("SnailBossShoot")
+		ANIMATIONPLAYER.play("SnailBossShoot")
 		counter += 1
 		if MUZZLEFLASH.visible == false:
 			MUZZLEFLASH.visible = true
 		elif MUZZLEFLASH.visible == true:
 			MUZZLEFLASH.visible = false
-		if $RayCast2D.is_colliding():
-			#print("hit something")
-			#var object = $RayCast2D.get_collider()
-			#print(object)
-			#if object.is_in_group("Player"):	
-				#print("hit the player")
-			pass
+		#check_collision()
 		if counter >= 60:
 			counter = 0
 			BULLET_PARTICLE.emitting = false
 			snailboss_state = state.UNDEPLOYINGGUN
+
+func check_collision():
+	var collider = RAYCAST.get_collider()
+	if collider.is_in_group("Player"):
+		#collider.hit_enemy()
+		print("Hit " + collider.name)

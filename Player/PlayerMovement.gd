@@ -27,6 +27,8 @@ var in_water = false
 
 var counter = 0
 
+onready var Sprite = $Sprite
+
 func get_input():
 	move_dir = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if player_state != state.KNOCKBACK and player_state != state.SWIMMING:
@@ -85,17 +87,17 @@ func _physics_process(delta):
 		if counter == 0:
 			velocity.y = -180 - rand_range(0,100)
 		counter += 1
-		if $Sprite.visible == true:
-			$Sprite.visible = false
+		if Sprite.visible == true:
+			Sprite.visible = false
 		else:
-			$Sprite.visible = true
+			Sprite.visible = true
 		velocity.y += gravity * delta
 		velocity = move_and_slide(velocity, Vector2.UP)
 		#print(counter)
 		if counter == 60:
 			player_state = state.JUMP
 			counter = 0
-			$Sprite.visible = true
+			Sprite.visible = true
 	
 
 #func hit_player():
