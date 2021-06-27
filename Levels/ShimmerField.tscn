@@ -15,9 +15,9 @@ scale = Vector2( 10, 10 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="ColorRect" type="ColorRect" parent="WorldEnvironment"]
-margin_left = -20.0
-margin_top = -12.0
-margin_right = 151.0
+margin_left = -50.0
+margin_top = -37.0
+margin_right = 186.0
 margin_bottom = 76.0
 __meta__ = {
 "_edit_use_anchors_": false

@@ -63,7 +63,7 @@ func _physics_process(delta):
 			MUZZLEFLASH.visible = true
 		elif MUZZLEFLASH.visible == true:
 			MUZZLEFLASH.visible = false
-		#check_collision()
+		check_collision()
 		if counter >= 60:
 			counter = 0
 			BULLET_PARTICLE.emitting = false
@@ -71,6 +71,7 @@ func _physics_process(delta):
 
 func check_collision():
 	var collider = RAYCAST.get_collider()
+	#print(collider.name)
 	if collider.is_in_group("Player"):
 		#collider.hit_enemy()
 		print("Hit " + collider.name)

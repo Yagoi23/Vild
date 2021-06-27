@@ -112,6 +112,7 @@ frame = 10
 position = Vector2( -7.02803, -10.3865 )
 rotation = 1.57079
 scale = Vector2( 1.18201, 11.3232 )
+enabled = true
 
 [node name="Bullets" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1.82876, -10.4416 )
