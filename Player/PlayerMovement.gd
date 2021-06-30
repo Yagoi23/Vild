@@ -43,6 +43,9 @@ func get_input():
 			velocity.x = move_toward(velocity.x, 0, water_friction)
 
 func _physics_process(delta):
+	if PlayerStats.Apply_Knockback == true:
+		PlayerStats.Apply_Knockback = false
+		player_state = state.KNOCKBACK
 	#print(state.keys()[player_state])
 	if player_state != state.KNOCKBACK:
 		get_input()
