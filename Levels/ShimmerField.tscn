@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://TileSet/BW.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/LightMasks/LightMask.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Items/Nacho.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/Smart Maggot.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Light Thinngs/LampTallish.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemies/Smarter Maggot.tscn" type="PackedScene" id=7]
 
 [node name="Node2D" type="Node2D"]
 
@@ -117,3 +118,6 @@ position = Vector2( 1072, 112 )
 
 [node name="Smart Maggot2" parent="Enemy" instance=ExtResource( 5 )]
 position = Vector2( 840, 56 )
+
+[node name="Smarter Maggot" parent="." instance=ExtResource( 7 )]
+position = Vector2( 936, 128 )

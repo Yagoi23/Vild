@@ -83,3 +83,4 @@ shape = SubResource( 4 )
 [connection signal="body_entered" from="HitZone Left" to="." method="_on_HitZone_Left_body_entered"]
 [connection signal="body_entered" from="HitZone Right" to="." method="_on_HitZone_Right_body_entered"]
 [connection signal="area_entered" from="DetectionZone" to="." method="_on_DetectionZone_area_entered"]
+[connection signal="area_exited" from="DetectionZone" to="." method="_on_DetectionZone_area_exited"]

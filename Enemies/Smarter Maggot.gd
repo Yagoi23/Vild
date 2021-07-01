@@ -4,14 +4,24 @@ const GRAVITY = 100
 const SPEED = 5
 const FLOOR = Vector2(0,-1)
 
-var player = null
+var follow_player
+
+
+#var player = null
 
 var velocity = Vector2()
 
 var dir = 1
 
 func _physics_process(delta):
-	
+	if follow_player == true:
+		for node in get_tree().get_nodes_in_group("Player"):
+			#dir = (node.global_position.x - global_position.x)#.normalized()
+			var t = (node.global_position.x - global_position.x)#.normalized()
+			if t < 0:
+				dir = -1
+			elif t > 0:
+				dir = 1
 	velocity.x = SPEED * dir
 	$AnimationPlayer.play("Maggot Crawl")
 	velocity.y = GRAVITY
@@ -26,4 +36,10 @@ func _physics_process(delta):
 
 func _on_DetectionZone_area_entered(area):
 	if area.is_in_group("Player"):
-		player
+		follow_player = true
+
+
+func _on_DetectionZone_area_exited(area):
+	#if area.is_in_group("Player"):
+	#	player
+	pass
