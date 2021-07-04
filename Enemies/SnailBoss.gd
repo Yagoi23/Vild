@@ -80,7 +80,7 @@ func _physics_process(delta):
 		counter += 1
 		if counter >= 60:
 			counter = 0
-			snailboss_state = state.MOVING
+			snailboss_state = state.ENTERSHELL
 	elif snailboss_state == state.SHOOTING:
 		BULLET_PARTICLE.emitting = true
 		ANIMATIONPLAYER.play("SnailBossShoot")
@@ -97,11 +97,23 @@ func _physics_process(delta):
 	elif snailboss_state == state.ENTERSHELL:
 		counter += 1
 		ANIMATIONPLAYER.play("SnailBossGoInToShell")
-		if counter >= 60:
+		if counter >= 43:
 			counter = 0
+			snailboss_state = state.ROLLING
 	elif snailboss_state == state.ROLLING:
 		counter += 1
 		ANIMATIONPLAYER.play("SnailBossShellSpin")
+		for node in get_tree().get_nodes_in_group("Player"):
+			#dir = (node.global_position.x - global_position.x)#.normalized()
+			var t = (node.global_position.x - global_position.x)#.normalized()
+			if t < 0:
+				dir = 1
+			elif t > 0:
+				dir = -1
+		velocity.x = SPEED * dir * 8
+		#$AnimationPlayer.play("Maggot Crawl")
+		velocity.y = GRAVITY
+		velocity = move_and_slide(velocity, FLOOR)
 		if counter >= 60:
 			counter = 0
 	elif snailboss_state == state.EXITSHELL:

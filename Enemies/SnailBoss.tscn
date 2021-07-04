@@ -102,7 +102,6 @@ anims/SnailBossShellSpin = SubResource( 5 )
 anims/SnailBossShoot = SubResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="."]
-rotation = 6.28319
 texture = ExtResource( 1 )
 hframes = 4
 vframes = 5
