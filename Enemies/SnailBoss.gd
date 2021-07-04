@@ -12,25 +12,34 @@ var counter = 0
 onready var SPRITE = $Sprite
 #onready var MUZZLEFLASH = $MuzzleFlash
 onready var BULLET_PARTICLE = $Bullets
-onready var RAYCAST = $RayCast2D
+onready var RAYCAST = $RayCast
+#onready var RAYCAST_RIGHT = $RayCast2D_Right
+#var RAYCAST = RAYCAST_LEFT
 onready var ANIMATIONPLAYER = $AnimationPlayer
-enum state {MOVING, SHOOTING, DEPLOYINGGUN, UNDEPLOYINGGUN, ROLLING}
+enum state {MOVING, SHOOTING, DEPLOYINGGUN, UNDEPLOYINGGUN, ENTERSHELL, ROLLING, EXITSHELL}
 var snailboss_state = state.MOVING
 
 func _ready():
 	BULLET_PARTICLE.emitting = false
 
 func _physics_process(delta):
-	if dir == -1:
+	RAYCAST.position.x = global_position.x
+	if dir == -1: #RIGHT
 		SPRITE.flip_h = true
+		RAYCAST.rotation_degrees = 270
 		BULLET_PARTICLE.position.x *= -1
 		#MUZZLEFLASH.position.x *= -1
 		#MUZZLEFLASH.flip_h == false
-	elif dir == 1:
+		#RAYCAST.cast_to = Vector2(global_position.x + 10,0)
+		
+	elif dir == 1: #LEFT
 		SPRITE.flip_h = false
-		BULLET_PARTICLE.position.x *= 1
+		RAYCAST.rotation_degrees = 90
+		BULLET_PARTICLE.position.x *= -1
 		#MUZZLEFLASH.position.x *= 1
 		#MUZZLEFLASH.flip_h == true
+	#if RAYCAST == RAYCAST_LEFT:
+	#	print("raycast is left")
 	if snailboss_state == state.MOVING:
 		for node in get_tree().get_nodes_in_group("Player"):
 			#dir = (node.global_position.x - global_position.x)#.normalized()
@@ -85,9 +94,21 @@ func _physics_process(delta):
 			counter = 0
 			BULLET_PARTICLE.emitting = false
 			snailboss_state = state.UNDEPLOYINGGUN
+	elif snailboss_state == state.ENTERSHELL:
+		counter += 1
+		ANIMATIONPLAYER.play("SnailBossGoInToShell")
+		if counter >= 60:
+			counter = 0
 	elif snailboss_state == state.ROLLING:
-		
-		pass
+		counter += 1
+		ANIMATIONPLAYER.play("SnailBossShellSpin")
+		if counter >= 60:
+			counter = 0
+	elif snailboss_state == state.EXITSHELL:
+		counter += 1
+		ANIMATIONPLAYER.play_backwards("SnailBossGoInToShell")
+		if counter >= 60:
+			counter = 0
 
 func check_collision():
 	var collider = RAYCAST.get_collider()

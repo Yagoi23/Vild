@@ -7,7 +7,7 @@
 [ext_resource path="res://TileSet/BW.tres" type="TileSet" id=5]
 [ext_resource path="res://Assets/TestSprite.png" type="Texture" id=6]
 [ext_resource path="res://Levels/SewerEntrance1.gd" type="Script" id=7]
-[ext_resource path="res://Light Thinngs/LampTallish.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Light Things/LampTallish.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 4 )
