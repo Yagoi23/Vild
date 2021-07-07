@@ -24,6 +24,7 @@ extents = Vector2( 10, 16 )
 [node name="Level1" type="Node2D"]
 
 [node name="WorldEnvironment" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="ColorRect" type="ColorRect" parent="WorldEnvironment"]

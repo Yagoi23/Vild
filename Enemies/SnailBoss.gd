@@ -103,24 +103,26 @@ func _physics_process(delta):
 	elif snailboss_state == state.ROLLING:
 		counter += 1
 		ANIMATIONPLAYER.play("SnailBossShellSpin")
-		for node in get_tree().get_nodes_in_group("Player"):
-			#dir = (node.global_position.x - global_position.x)#.normalized()
-			var t = (node.global_position.x - global_position.x)#.normalized()
-			if t < 0:
-				dir = 1
-			elif t > 0:
-				dir = -1
-		velocity.x = SPEED * dir * 8
+		#for node in get_tree().get_nodes_in_group("Player"):
+		#	#dir = (node.global_position.x - global_position.x)#.normalized()
+		#	var t = (node.global_position.x - global_position.x)#.normalized()
+		#	if t < 0:
+		#		dir = 1
+		#	elif t > 0:
+		#		dir = -1
+		velocity.x = SPEED * dir * 16
 		#$AnimationPlayer.play("Maggot Crawl")
 		velocity.y = GRAVITY
 		velocity = move_and_slide(velocity, FLOOR)
 		if counter >= 60:
 			counter = 0
+			snailboss_state = state.EXITSHELL
 	elif snailboss_state == state.EXITSHELL:
 		counter += 1
 		ANIMATIONPLAYER.play_backwards("SnailBossGoInToShell")
-		if counter >= 60:
+		if counter >= 43:
 			counter = 0
+			snailboss_state = state.MOVING
 
 func check_collision():
 	var collider = RAYCAST.get_collider()
