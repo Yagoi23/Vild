@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Enemies/Bat.png" type="Texture" id=1]
 [ext_resource path="res://Enemies/Bat.gd" type="Script" id=2]
+[ext_resource path="res://Assets/LightMasks/LightMask (smol).png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 47.0255 )
@@ -53,6 +54,13 @@ region_rect = Rect2( 64, 0, 16, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
 shape = SubResource( 3 )
+
+[node name="EnemySenseLight" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 0.2
+color = Color( 1, 0, 0, 1 )
+energy = 16.0
+shadow_enabled = true
 
 [connection signal="area_entered" from="DetectionZone" to="." method="_on_DetectionZone_area_entered"]
 [connection signal="area_exited" from="DetectionZone" to="." method="_on_DetectionZone_area_exited"]

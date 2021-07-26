@@ -8,6 +8,8 @@ var velocity = Vector2()
 
 var dir = 1
 
+onready var SPRITE = $Sprite
+
 func _physics_process(delta):
 	velocity.x = SPEED * dir
 	$AnimationPlayer.play("Maggot Crawl")
@@ -19,6 +21,12 @@ func _physics_process(delta):
 	if $RayCast2D.is_colliding() == false:
 		dir = dir * -1
 		$RayCast2D.position *= -1
+
+func _process(delta):
+	if PlayerStats.Enemy_Sense == true:
+		SPRITE.modulate = Color(255,0,0) # turn sprite red
+	else:
+		SPRITE.modulate = Color(255,255,255) # turn sprite white
 
 func _on_HitZone_Right_body_entered(body):
 	if body.is_in_group("Player"):

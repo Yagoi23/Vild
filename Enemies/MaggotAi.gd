@@ -8,6 +8,8 @@ var velocity = Vector2()
 
 var dir = 1
 
+onready var SPRITE = $Sprite
+
 func _physics_process(delta):
 	velocity.x = SPEED * dir
 	$AnimationPlayer.play("Maggot Crawl")
@@ -15,3 +17,9 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, FLOOR)
 	if is_on_wall():
 		dir = dir * -1
+
+func _process(delta):
+	if PlayerStats.Enemy_Sense == true:
+		SPRITE.modulate = Color(255,0,0) # turn sprite red
+	else:
+		SPRITE.modulate = Color(255,255,255) # turn sprite white

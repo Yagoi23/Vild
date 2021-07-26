@@ -1,15 +1,5 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Ui/Hud/Hud.tscn" type="PackedScene" id=2]
+[gd_scene format=2]
 
 [node name="Camera2D" type="Camera2D"]
 current = true
 zoom = Vector2( 0.5, 0.5 )
-
-[node name="Control" parent="." instance=ExtResource( 2 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -511.0
-margin_top = -299.0
-margin_right = -511.0
-margin_bottom = -299.0

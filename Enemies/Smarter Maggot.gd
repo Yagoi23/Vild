@@ -8,6 +8,7 @@ var follow_player
 
 
 #var player = null
+onready var SPRITE = $Sprite
 
 var velocity = Vector2()
 
@@ -33,6 +34,11 @@ func _physics_process(delta):
 		dir = dir * -1
 		$RayCast2D.position *= -1
 
+func _process(delta):
+	if PlayerStats.Enemy_Sense == true:
+		SPRITE.modulate = Color(255,0,0) # turn sprite red
+	else:
+		SPRITE.modulate = Color(255,255,255) # turn sprite white
 
 func _on_DetectionZone_area_entered(area):
 	if area.is_in_group("Player"):
