@@ -6,7 +6,7 @@ const FLOOR = Vector2(0,-1)
 
 var follow_player
 
-
+onready var SPRITE = $Sprite
 #var player = null
 
 var velocity = Vector2()
@@ -37,7 +37,11 @@ func _physics_process(delta):
 	
 	velocity = move_and_slide(velocity, FLOOR)
 
-
+func _process(delta):
+	if PlayerStats.Enemy_Sense == true:
+		SPRITE.modulate = Color(255,0,0) # turn sprite red
+	else:
+		SPRITE.modulate = Color(0,0,0) # turn sprite white
 
 func _on_DetectionZone_area_entered(area):
 	if area.is_in_group("Player"):

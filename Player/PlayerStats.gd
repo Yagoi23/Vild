@@ -8,6 +8,8 @@ var Apply_Knockback = false
 var Max_Stamina = 100
 var Stamina
 
+var Enemy_Sense = false
+
 func _onready():
 	Health = 100
 

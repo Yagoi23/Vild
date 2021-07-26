@@ -48,6 +48,11 @@ func get_input():
 		else:
 			velocity.x = move_toward(velocity.x, 0, water_friction)
 
+func _process(delta):
+	if Input.is_action_just_pressed("EnemySense"):
+		PlayerStats.Enemy_Sense = true
+		$EnemySenseTimer.start()
+
 func _physics_process(delta):
 	if PlayerStats.Apply_Knockback == true:
 		PlayerStats.Apply_Knockback = false
@@ -150,3 +155,7 @@ func _on_Area2D_area_exited(area):
 		print("slide") # Replace with function body.
 		friction = 10
 
+
+
+func _on_EnemySenseTimer_timeout():
+	PlayerStats.Enemy_Sense = false

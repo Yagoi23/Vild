@@ -132,3 +132,10 @@ func check_collision():
 			PlayerStats.hit_player(12)
 			#collider.hit_enemy()
 			print("Hit " + collider.name)
+
+func _process(delta):
+	if PlayerStats.Enemy_Sense == true:
+		SPRITE.modulate = Color(255,0,0) # turn sprite red
+	else:
+		SPRITE.modulate = Color(255,255,255) # turn sprite white
+	

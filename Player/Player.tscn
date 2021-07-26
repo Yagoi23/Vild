@@ -47,5 +47,9 @@ texture = ExtResource( 4 )
 mode = 2
 shadow_enabled = true
 
+[node name="EnemySenseTimer" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_Area2D_area_exited"]
+[connection signal="timeout" from="EnemySenseTimer" to="." method="_on_EnemySenseTimer_timeout"]
