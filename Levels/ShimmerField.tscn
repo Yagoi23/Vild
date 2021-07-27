@@ -28,6 +28,7 @@ __meta__ = {
 [node name="Lights" type="Node" parent="."]
 
 [node name="Light2D" type="Light2D" parent="Lights"]
+visible = false
 position = Vector2( 96, -56 )
 texture = ExtResource( 2 )
 shadow_enabled = true
@@ -43,6 +44,7 @@ __meta__ = {
 }
 
 [node name="Light2D2" type="Light2D" parent="Lights"]
+visible = false
 position = Vector2( 248, -56 )
 texture = ExtResource( 2 )
 texture_scale = 1.41
@@ -59,6 +61,7 @@ __meta__ = {
 }
 
 [node name="Light2D3" type="Light2D" parent="Lights"]
+visible = false
 position = Vector2( 832, -80 )
 texture = ExtResource( 2 )
 texture_scale = 1.41
@@ -75,27 +78,35 @@ __meta__ = {
 }
 
 [node name="LampTallish" parent="Lights" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 464, 40 )
 
 [node name="LampTallish2" parent="Lights" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 1136, 96 )
 
 [node name="LampTallish3" parent="Lights" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 264, 96 )
 
 [node name="LampTallish4" parent="Lights" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 192, 40 )
 
 [node name="LampTallish5" parent="Lights" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 712, 32 )
 
 [node name="LampTallish6" parent="Lights" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 835.966, 111.809 )
 
 [node name="LampTallish7" parent="Lights" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 968, 104 )
 
 [node name="LampTallish8" parent="Lights" instance=ExtResource( 6 )]
+visible = false
 position = Vector2( 1336, 48 )
 
 [node name="TileMap" type="TileMap" parent="."]

@@ -95,6 +95,13 @@ func _physics_process(delta):
 			BULLET_PARTICLE.emitting = false
 			snailboss_state = state.UNDEPLOYINGGUN
 	elif snailboss_state == state.ENTERSHELL:
+		for node in get_tree().get_nodes_in_group("Player"):
+			#dir = (node.global_position.x - global_position.x)#.normalized()
+			var t = (node.global_position.x - global_position.x)#.normalized()
+			if t < 0:
+				dir = 1
+			elif t > 0:
+				dir = -1
 		counter += 1
 		ANIMATIONPLAYER.play("SnailBossGoInToShell")
 		if counter >= 43:
@@ -135,7 +142,7 @@ func check_collision():
 
 func _process(delta):
 	if PlayerStats.Enemy_Sense == true:
-		SPRITE.modulate = Color(255,0,0) # turn sprite red
+		SPRITE.modulate = Color(110,0,0) # turn sprite red
 	else:
 		SPRITE.modulate = Color(255,255,255) # turn sprite white
 	
