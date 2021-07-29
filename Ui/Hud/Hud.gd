@@ -5,3 +5,6 @@ func _ready():
 
 func _process(delta):
 	$HealthBar.value = PlayerStats.Health
+	$HealthBar.max_value = PlayerStats.Max_Health
+	$StaminaBar.value = PlayerStats.Stamina
+	$StaminaBar.max_value = PlayerStats.Max_Stamina

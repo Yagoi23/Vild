@@ -52,6 +52,11 @@ func _process(delta):
 	if Input.is_action_just_pressed("EnemySense"):
 		PlayerStats.Enemy_Sense = true
 		$EnemySenseTimer.start()
+	if PlayerStats.Health <= 0:
+		PlayerDied()
+
+func PlayerDied():
+	print("He Ded")
 
 func _physics_process(delta):
 	if PlayerStats.Apply_Knockback == true:
@@ -72,12 +77,16 @@ func _physics_process(delta):
 #NORMAL
 #------------------------------------------------------------------------------
 		elif player_state != state.SWIMMING:
+			if is_on_floor():
+				if PlayerStats.Stamina <= PlayerStats.Max_Stamina:
+					PlayerStats.Stamina += 1
 			if velocity.x == 0:
 				player_state = state.IDLE
 			elif velocity.x != 0:
 				player_state = state.RUNNING
 			#if is_on_floor() and Input.is_action_just_pressed("jump"):
-			if Input.is_action_just_pressed("jump"):
+			if Input.is_action_just_pressed("jump") and PlayerStats.Stamina >= 10:
+				PlayerStats.Stamina -= 10
 				velocity.y = jump_speed
 				player_state = state.JUMP
 			if not is_on_floor():
@@ -85,7 +94,8 @@ func _physics_process(delta):
 					player_state = state.JUMP
 				else:
 					player_state = state.FALL
-			if is_on_wall() and Input.is_action_just_pressed("jump"):
+			if is_on_wall() and Input.is_action_just_pressed("jump") and PlayerStats.Stamina >= 10:
+				PlayerStats.Stamina -= 10
 				velocity.y = jump_speed
 				player_state = state.JUMP
 			elif is_on_wall():
@@ -108,7 +118,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		velocity = move_and_slide(velocity, Vector2.UP)
 		#print(counter)
-		if counter == 60:
+		if counter == 10:
 			player_state = state.JUMP
 			counter = 0
 			Sprite.visible = true
@@ -138,10 +148,10 @@ func _on_Area2D_area_entered(area):
 		print("slide") # Replace with function body.
 		friction = 0
 
-	if area.is_in_group("Enemy"):
-		counter = 0
-		print("knockback")
-		player_state = state.KNOCKBACK
+	#if area.is_in_group("Enemy"):
+	#	counter = 0
+	#	print("knockback")
+	#	player_state = state.KNOCKBACK
 
 
 func _on_Area2D_area_exited(area):

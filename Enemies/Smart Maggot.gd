@@ -28,19 +28,6 @@ func _process(delta):
 	else:
 		SPRITE.modulate = Color(255,255,255) # turn sprite white
 
-func _on_HitZone_Right_body_entered(body):
-	if body.is_in_group("Player"):
-		print("hit player right")
-		#PlayerMovement.player_state = PlayerMovement.state.KNOCKBACK
-#		PlayerMovement.hit_player()
-
-
-
-func _on_HitZone_Left_body_entered(body):
-	if body.is_in_group("Player"):
-		print("hit player left")
-		#PlayerMovement.player_state = PlayerMovement.state.KNOCKBACK
-#	if body.is_in_group("Player"):
-#		print("hit player left")
-#		#PlayerMovement.hit_player(10,100)
-#		PlayerMovement.hit_player()
+func _on_HitZone_area_entered(area):
+	if area.is_in_group("Player"):
+		PlayerStats.hit_player(10)

@@ -136,7 +136,7 @@ func check_collision():
 	#print(collider.name)
 	if collider:
 		if collider.is_in_group("Player"):
-			PlayerStats.hit_player(12)
+			PlayerStats.hit_player(10)
 			#collider.hit_enemy()
 			print("Hit " + collider.name)
 

@@ -48,3 +48,8 @@ func _on_DetectionZone_area_entered(area):
 func _on_DetectionZone_area_exited(area):
 	if area.is_in_group("Player"):
 		follow_player = false
+
+
+func _on_HitZone_area_entered(area):
+	if area.is_in_group("Player"):
+		PlayerStats.hit_player(10)
