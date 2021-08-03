@@ -97,6 +97,7 @@ func _physics_process(delta):
 			if is_on_wall() and Input.is_action_just_pressed("jump") and PlayerStats.Stamina >= 10:
 				PlayerStats.Stamina -= 10
 				velocity.y = jump_speed
+				velocity.x = 200 * move_dir * -1
 				player_state = state.JUMP
 			elif is_on_wall():
 				player_state = state.CLIMBING

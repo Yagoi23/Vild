@@ -23,7 +23,7 @@ tracks/0/keys = {
 [sub_resource type="CircleShape2D" id=2]
 radius = 5.0
 
-[node name="Node2D" type="Node2D"]
+[node name="Nacho" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
