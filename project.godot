@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 PlayerStats="*res://Player/PlayerStats.gd"
+Checkpoint="*res://Checkpoint/Checkpoint.gd"
 
 [display]
 

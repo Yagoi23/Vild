@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://TileSet/BW.tres" type="TileSet" id=1]
 [ext_resource path="res://Hazards/Spikes.tscn" type="PackedScene" id=2]
@@ -7,8 +7,11 @@
 [ext_resource path="res://Items/Nacho.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Smart Maggot.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemies/Smarter Maggot.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Levels/Ruinous Road/Starting Level.gd" type="Script" id=8]
+[ext_resource path="res://Checkpoint/Checkpoint.tscn" type="PackedScene" id=9]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0, 0, 0, 1 )
@@ -31,9 +34,6 @@ tile_data = PoolIntArray( 33, 23, 0, 34, 23, 0, 35, 23, 0, 36, 23, 0, 37, 23, 0,
 
 [node name="Nacho" parent="TileMap" instance=ExtResource( 5 )]
 position = Vector2( 218, 74 )
-
-[node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 80, 400 )
 
 [node name="Spikes" type="Node" parent="."]
 
@@ -68,3 +68,9 @@ position = Vector2( 552, 432 )
 
 [node name="Smarter Maggot" parent="." instance=ExtResource( 7 )]
 position = Vector2( 496, 440 )
+
+[node name="Checkpoint" parent="." instance=ExtResource( 9 )]
+position = Vector2( 376, 440 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 88, 408 )

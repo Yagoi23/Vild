@@ -57,6 +57,8 @@ func _process(delta):
 
 func PlayerDied():
 	print("He Ded")
+	PlayerStats.Health = PlayerStats.Max_Health
+	get_tree().change_scene("res://Levels/Ruinous Road/Starting Level.tscn")
 
 func _physics_process(delta):
 	if PlayerStats.Apply_Knockback == true:
