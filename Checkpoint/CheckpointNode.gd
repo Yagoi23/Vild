@@ -6,6 +6,6 @@ func _ready():
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("Player"):
 		Checkpoint.last_position = global_position
-		Checkpoint.last_level = get_tree().edited_scene_root.filename
+		#Checkpoint.last_level = get_tree().edited_scene_root.filename
 		print(Checkpoint.last_level)
 		$AnimationPlayer.play("Checkpoint Lit")
