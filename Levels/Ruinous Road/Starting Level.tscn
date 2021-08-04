@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://TileSet/BW.tres" type="TileSet" id=1]
 [ext_resource path="res://Hazards/Spikes.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Levels/Ruinous Road/Starting Level.gd" type="Script" id=8]
 [ext_resource path="res://Checkpoint/Checkpoint.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Levels/Ruinous Road/Exit to Level2.gd" type="Script" id=10]
+[ext_resource path="res://Direction Arrows/SimpleArrowDown.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 16 )
@@ -90,6 +91,9 @@ script = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/Area2D"]
 shape = SubResource( 1 )
+
+[node name="ArrowDown" parent="Exits/Area2D" instance=ExtResource( 11 )]
+position = Vector2( 0, -16 )
 
 [connection signal="area_entered" from="Exits/Area2D" to="Exits/Area2D" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Exits/Area2D" to="Exits/Area2D" method="_on_Area2D_area_exited"]

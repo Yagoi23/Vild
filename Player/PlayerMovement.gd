@@ -59,6 +59,7 @@ func PlayerDied():
 	print("He Ded")
 	PlayerStats.Health = PlayerStats.Max_Health
 	get_tree().change_scene(Checkpoint.last_level)
+	Checkpoint.dead = true
 
 func _physics_process(delta):
 	if PlayerStats.Apply_Knockback == true:
