@@ -5,5 +5,5 @@ func _enter_tree():
 		if Checkpoint.last_position:
 			$Player.global_position = Checkpoint.last_position
 			Checkpoint.dead = false
-	else:
-		$Player.global_position =  Checkpoint.door_exit_cords
+	#else:
+	#	$Player.global_position =  Checkpoint.door_exit_cords
