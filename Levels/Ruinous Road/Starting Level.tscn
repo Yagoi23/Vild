@@ -19,7 +19,6 @@ extents = Vector2( 10, 16 )
 script = ExtResource( 8 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0, 0, 0, 1 )
 
 [node name="ColorRect" type="ColorRect" parent="CanvasModulate"]
