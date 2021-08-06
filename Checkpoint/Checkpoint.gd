@@ -4,6 +4,6 @@ var dead = false
 var last_position = null
 var last_level = null
 
-var door_exit_cords = null
+#var lvl_1_door_exit_cords = Vector2(1, 1)
 
-var starting_level_exit = null
+var exit_door_cords = null

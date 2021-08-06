@@ -8,7 +8,8 @@ func _process(delta):
 	if can_travel == true and Input.is_action_just_pressed("w"):
 		print("travelled")
 		get_tree().change_scene("res://Levels/Ruinous Road/Starting Level.tscn")
-		Checkpoint.door_exit_cords = Checkpoint.starting_level_exit
+		#Checkpoint.door_exit_cords = Checkpoint.starting_level_exit
+		Checkpoint.exit_door_cords = Vector2(688, 352)
 
 
 
