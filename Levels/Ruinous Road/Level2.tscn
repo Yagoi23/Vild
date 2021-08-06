@@ -20,7 +20,6 @@ script = ExtResource( 5 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="ColorRect" type="ColorRect" parent="CanvasModulate"]
-visible = false
 margin_left = -408.0
 margin_top = -72.0
 margin_right = 1745.0
@@ -230,7 +229,10 @@ position = Vector2( 376, 152 )
 position = Vector2( 88, 128 )
 
 [node name="LampTallish5" parent="." instance=ExtResource( 9 )]
-position = Vector2( 824, 160 )
+position = Vector2( 880, 168 )
+
+[node name="LampTallish6" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1176, 216 )
 
 [connection signal="area_entered" from="Exits/To Level 1" to="Exits/To Level 1" method="_on_To_Level_1_area_entered"]
 [connection signal="area_exited" from="Exits/To Level 1" to="Exits/To Level 1" method="_on_To_Level_1_area_exited"]
