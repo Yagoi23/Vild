@@ -35,6 +35,8 @@ var counter = 0
 
 onready var Sprite = $Sprite
 
+onready var AnimationPlayer = $AnimationPlayer
+
 func get_input():
 	move_dir = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if player_state != state.KNOCKBACK and player_state != state.SWIMMING:
@@ -47,6 +49,10 @@ func get_input():
 			velocity.x = move_toward(velocity.x,move_dir*water_speed,water_acceleration)
 		else:
 			velocity.x = move_toward(velocity.x, 0, water_friction)
+	if Input.is_action_pressed("move_left"):
+		$Sprite.flip_h = true
+	elif Input.is_action_pressed("move_right"):
+		$Sprite.flip_h = false
 
 func _process(delta):
 	if Input.is_action_just_pressed("EnemySense"):
@@ -133,6 +139,15 @@ func _physics_process(delta):
 		air_speed +=1
 	else:
 		air_speed = 0
+#------------------------------------------------------------------------------
+#Animation
+#------------------------------------------------------------------------------
+	if player_state == state.IDLE:
+		AnimationPlayer.play("Player_Idle")
+	elif player_state == state.RUNNING:
+		AnimationPlayer.play("Player_Run")
+	elif player_state == state.CLIMBING:
+		AnimationPlayer.play("Wall_Cling")
 
 #func hit_player():
 	#pass
