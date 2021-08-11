@@ -10,3 +10,4 @@ func _on_Area2D_body_entered(body):
 		Checkpoint.last_level = get_tree().current_scene.filename
 		print(Checkpoint.last_level)
 		$AnimationPlayer.play("Checkpoint Lit")
+		SaveSystem.save_data()

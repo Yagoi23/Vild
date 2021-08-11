@@ -57,3 +57,10 @@ percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="."]
+margin_left = 1.25992
+margin_top = 14.0615
+margin_right = 45.2599
+margin_bottom = 28.0615
+text = "testing"

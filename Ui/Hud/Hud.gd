@@ -8,3 +8,4 @@ func _process(delta):
 	$HealthBar.max_value = PlayerStats.Max_Health
 	$StaminaBar.value = PlayerStats.Stamina
 	$StaminaBar.max_value = PlayerStats.Max_Stamina
+	$Label.text = str(PlayerStats.Max_Health) + "/" + str(PlayerStats.Max_Stamina)

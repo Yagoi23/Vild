@@ -18,3 +18,8 @@ func _ready():
 
 func _on_NewGame_pressed():
 	get_tree().change_scene("res://Levels/Ruinous Road/Starting Level.tscn")
+
+
+func _on_LoadGame_pressed():
+	SaveSystem.load_data()
+	get_tree().change_scene("res://Levels/Ruinous Road/Starting Level.tscn")
