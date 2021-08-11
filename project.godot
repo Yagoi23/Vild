@@ -12,12 +12,15 @@ config_version=4
 
 config/name="Vild"
 run/main_scene="res://Ui/MainMenu/MainMenu.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Vild"
 config/icon="res://icon.png"
 
 [autoload]
 
 PlayerStats="*res://Player/PlayerStats.gd"
 Checkpoint="*res://Checkpoint/Checkpoint.gd"
+SaveSystem="*res://SaveSystem.gd"
 
 [display]
 
