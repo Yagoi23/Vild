@@ -22,4 +22,6 @@ func _on_NewGame_pressed():
 
 func _on_LoadGame_pressed():
 	SaveSystem.load_data()
-	get_tree().change_scene("res://Levels/Ruinous Road/Starting Level.tscn")
+	Checkpoint.dead = true
+	get_tree().change_scene(Checkpoint.last_level)
+	

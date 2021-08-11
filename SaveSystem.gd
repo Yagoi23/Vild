@@ -3,7 +3,10 @@ extends Node
 #random bullshit go!
 var saveData = {
 	"Max_Health" : 1,
-	"Max_Stamina" : 1
+	"Max_Stamina" : 1,
+	"Last_Checkpoint_x": null,
+	"Last_Checkpoint_y": null,
+	"Last_Level": null
 }
 
 var saveGameFileName = "user://playerData.txt"
@@ -11,6 +14,11 @@ var saveGameFileName = "user://playerData.txt"
 func edit_data():
 	saveData.Max_Health = PlayerStats.Max_Health
 	saveData.Max_Stamina = PlayerStats.Max_Stamina
+	
+	saveData.Last_Checkpoint_x = Checkpoint.last_position.x
+	saveData.Last_Checkpoint_y = Checkpoint.last_position.y
+	
+	saveData.Last_Level = Checkpoint.last_level
 
 func save_data():
 	self.edit_data()
@@ -38,8 +46,22 @@ func load_data():
 		saveData.Max_Health = nodeData["Max_Health"]
 		saveData.Max_Stamina = nodeData["Max_Stamina"]
 		
+		saveData.Last_Checkpoint_x = nodeData["Last_Checkpoint_x"]
+		saveData.Last_Checkpoint_y = nodeData["Last_Checkpoint_y"]
+		
+		saveData.Last_Level = nodeData["Last_Level"]
+		
 		PlayerStats.Max_Health = saveData.Max_Health
 		PlayerStats.Max_Stamina = saveData.Max_Stamina
+		
+		Checkpoint.last_level = saveData.Last_Level
+		
+		var x = saveData.Last_Checkpoint_x
+		var y = saveData.Last_Checkpoint_y
+		
+		Checkpoint.last_position  = Vector2(x, y)
+		
+		
 
 		
 	dataFile.close()
