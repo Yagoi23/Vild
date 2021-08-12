@@ -156,6 +156,7 @@ shape = SubResource( 5 )
 [node name="Camera2D" parent="." instance=ExtResource( 3 )]
 
 [node name="Light2D" type="Light2D" parent="."]
+visible = false
 texture = ExtResource( 4 )
 shadow_enabled = true
 
@@ -178,7 +179,6 @@ __meta__ = {
 [node name="CanvasLayer" type="CanvasLayer" parent="ViewportContainer"]
 
 [node name="Hud" parent="ViewportContainer/CanvasLayer" instance=ExtResource( 5 )]
-visible = false
 
 [node name="Area2D2" type="Area2D" parent="."]
 
