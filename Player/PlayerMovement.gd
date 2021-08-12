@@ -148,6 +148,10 @@ func _physics_process(delta):
 		AnimationPlayer.play("Player_Run")
 	elif player_state == state.CLIMBING:
 		AnimationPlayer.play("Wall_Cling")
+	elif player_state == state.JUMP:
+		AnimationPlayer.play("Jump")
+	elif player_state == state.FALL:
+		AnimationPlayer.play("Fall")
 
 #func hit_player():
 	#pass
