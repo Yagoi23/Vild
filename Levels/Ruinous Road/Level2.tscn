@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://TileSet/BW.tres" type="TileSet" id=1]
 [ext_resource path="res://Checkpoint/Checkpoint.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Levels/Ruinous Road/ToLevel1.gd" type="Script" id=7]
 [ext_resource path="res://Moving Blocks/Horizontal Moving Block.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Light Things/LampTallish.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Enemies/Bat.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 16 )
@@ -233,6 +234,9 @@ position = Vector2( 880, 168 )
 
 [node name="LampTallish6" parent="." instance=ExtResource( 9 )]
 position = Vector2( 1176, 216 )
+
+[node name="Bat" parent="." instance=ExtResource( 10 )]
+position = Vector2( 265.269, 125.118 )
 
 [connection signal="area_entered" from="Exits/To Level 1" to="Exits/To Level 1" method="_on_To_Level_1_area_entered"]
 [connection signal="area_exited" from="Exits/To Level 1" to="Exits/To Level 1" method="_on_To_Level_1_area_exited"]

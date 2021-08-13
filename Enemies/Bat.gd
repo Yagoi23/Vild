@@ -12,8 +12,12 @@ onready var EnemySenseLight = $EnemySenseLight
 
 var velocity = Vector2()
 
+var health = 100
+
 var x_dir = 1
 var y_dir = 1
+
+var player_can_hit = false
 
 func _physics_process(delta):
 	if follow_player == true:
@@ -36,7 +40,13 @@ func _physics_process(delta):
 	
 	$AnimationPlayer.play("Bat Fly")
 	
+	if player_can_hit == true and PlayerStats.attacking == true:
+		health -= PlayerStats.attack_power
+
+	
 	velocity = move_and_slide(velocity, FLOOR)
+	
+	
 
 func _process(delta):
 	if PlayerStats.Enemy_Sense == true:
@@ -45,6 +55,10 @@ func _process(delta):
 	else:
 		SPRITE.modulate = Color(255,255,255) # turn sprite white
 		EnemySenseLight.enabled = false
+	
+	
+	if health <= 0:
+		queue_free()
 
 func _on_DetectionZone_area_entered(area):
 	if area.is_in_group("Player"):
@@ -55,9 +69,15 @@ func _on_DetectionZone_area_exited(area):
 	if area.is_in_group("Player"):
 		follow_player = false
 
-
 func _on_HitZone_area_entered(area):
 	if area.is_in_group("Player"):
 		PlayerStats.hit_player(10)
+	if area.is_in_group("Player_Attack"):
+		player_can_hit = true
 		#collider.hit_enemy()
 		#print("Hit " + collider.name)
+
+
+func _on_HitZone_area_exited(area):
+	if area.is_in_group("Player_Attack"):
+		player_can_hit = false

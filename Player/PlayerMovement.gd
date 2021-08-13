@@ -23,7 +23,7 @@ export (float,0,1,0) var acceleration = 25
 export (float,0,1,0) var water_acceleration = 5
 export (float,0,1,0) var water_friction = 100
 
-enum state {RUNNING, JUMP, IDLE, SWIMMING, FALL, KNOCKBACK, CLIMBING}
+enum state {RUNNING, JUMP, IDLE, SWIMMING, FALL, KNOCKBACK, CLIMBING, ATTACKING}
 
 var player_state = state.IDLE
 
@@ -39,7 +39,7 @@ onready var AnimationPlayer = $AnimationPlayer
 
 func get_input():
 	move_dir = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	if player_state != state.KNOCKBACK and player_state != state.SWIMMING:
+	if player_state != state.KNOCKBACK and player_state != state.SWIMMING and player_state != state.ATTACKING:
 		if move_dir != 0:
 			velocity.x = move_toward(velocity.x,move_dir*(speed+air_speed),acceleration)
 		else:
@@ -50,12 +50,17 @@ func get_input():
 		else:
 			velocity.x = move_toward(velocity.x, 0, water_friction)
 	if Input.is_action_pressed("move_left"):
-		$Sprite.flip_h = true
+		Sprite.flip_h = true
 	elif Input.is_action_pressed("move_right"):
-		$Sprite.flip_h = false
+		Sprite.flip_h = false
 #attack
 	if Input.is_action_pressed("attack"):
-		pass
+		PlayerStats.attacking = true
+		player_state = state.ATTACKING
+		$AttackTimer.start()
+
+func _on_AttackTimer_timeout():
+	PlayerStats.attacking = false
 
 func _process(delta):
 	if Input.is_action_just_pressed("EnemySense"):
@@ -155,6 +160,8 @@ func _physics_process(delta):
 		AnimationPlayer.play("Jump")
 	elif player_state == state.FALL:
 		AnimationPlayer.play("Fall")
+	elif player_state == state.ATTACKING:
+		AnimationPlayer.play("Attack")
 
 #func hit_player():
 	#pass
@@ -195,3 +202,6 @@ func _on_Area2D_area_exited(area):
 
 func _on_EnemySenseTimer_timeout():
 	PlayerStats.Enemy_Sense = false
+
+
+

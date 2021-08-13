@@ -8,6 +8,9 @@ var Apply_Knockback = false
 var Max_Stamina = 100
 var Stamina = 100
 
+var attack_power = 10
+var attacking = false
+
 var Enemy_Sense = false
 
 func _onready():
@@ -19,3 +22,6 @@ func _onready():
 func hit_player(ammount):
 	Apply_Knockback = true
 	Health -= ammount
+
+
+

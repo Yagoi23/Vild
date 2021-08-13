@@ -54,6 +54,7 @@ region_rect = Rect2( 64, 0, 16, 8 )
 "anims/Bat Fly" = SubResource( 2 )
 
 [node name="DetectionZone" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionZone"]
 shape = SubResource( 3 )
@@ -66,6 +67,8 @@ energy = 16.0
 shadow_enabled = true
 
 [node name="HitZone" type="Area2D" parent="."]
+position = Vector2( 0, -1.67044 )
+scale = Vector2( 1, 1.24 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitZone"]
 shape = SubResource( 4 )
@@ -73,3 +76,4 @@ shape = SubResource( 4 )
 [connection signal="area_entered" from="DetectionZone" to="." method="_on_DetectionZone_area_entered"]
 [connection signal="area_exited" from="DetectionZone" to="." method="_on_DetectionZone_area_exited"]
 [connection signal="area_entered" from="HitZone" to="." method="_on_HitZone_area_entered"]
+[connection signal="area_exited" from="HitZone" to="." method="_on_HitZone_area_exited"]
