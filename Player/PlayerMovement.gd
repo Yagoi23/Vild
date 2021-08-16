@@ -37,6 +37,9 @@ onready var Sprite = $Sprite
 
 onready var AnimationPlayer = $AnimationPlayer
 
+func _ready():
+	player_state = state.IDLE
+
 func get_input():
 	move_dir = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if player_state != state.KNOCKBACK and player_state != state.SWIMMING and player_state != state.ATTACKING:
@@ -54,13 +57,16 @@ func get_input():
 	elif Input.is_action_pressed("move_right"):
 		Sprite.flip_h = false
 #attack
-	if Input.is_action_pressed("attack"):
+	if Input.is_action_just_pressed("attack"):
+		print("attack")
 		PlayerStats.attacking = true
 		player_state = state.ATTACKING
 		$AttackTimer.start()
+		AnimationPlayer.play("Attack")
 
 func _on_AttackTimer_timeout():
 	PlayerStats.attacking = false
+
 
 func _process(delta):
 	if Input.is_action_just_pressed("EnemySense"):
@@ -76,11 +82,21 @@ func PlayerDied():
 	Checkpoint.dead = true
 
 func _physics_process(delta):
+	Sprite.visible = true
+	print(player_state)
+	if PlayerStats.attacking == true and player_state != state.KNOCKBACK:
+		#PlayerStats.Apply_Knockback = false
+		player_state = state.ATTACKING
+	elif PlayerStats.attacking == false:
+		player_state = state.IDLE
 	if PlayerStats.Apply_Knockback == true:
 		PlayerStats.Apply_Knockback = false
 		player_state = state.KNOCKBACK
 	#print(state.keys()[player_state])
-	if player_state != state.KNOCKBACK:
+	if player_state == state.ATTACKING:
+		velocity.y += gravity * delta
+		velocity = move_and_slide(velocity, Vector2.UP)
+	if player_state != state.KNOCKBACK and player_state != state.ATTACKING:
 		get_input()
 #------------------------------------------------------------------------------
 #SWIMMING
@@ -150,7 +166,9 @@ func _physics_process(delta):
 #------------------------------------------------------------------------------
 #Animation
 #------------------------------------------------------------------------------
-	if player_state == state.IDLE:
+	if player_state == state.ATTACKING:
+		AnimationPlayer.play("Attack")
+	elif player_state == state.IDLE:
 		AnimationPlayer.play("Player_Idle")
 	elif player_state == state.RUNNING:
 		AnimationPlayer.play("Player_Run")
@@ -160,8 +178,6 @@ func _physics_process(delta):
 		AnimationPlayer.play("Jump")
 	elif player_state == state.FALL:
 		AnimationPlayer.play("Fall")
-	elif player_state == state.ATTACKING:
-		AnimationPlayer.play("Attack")
 
 #func hit_player():
 	#pass

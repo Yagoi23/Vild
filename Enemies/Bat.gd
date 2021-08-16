@@ -12,36 +12,52 @@ onready var EnemySenseLight = $EnemySenseLight
 
 var velocity = Vector2()
 
-var health = 100
+var health = 10000
 
 var x_dir = 1
 var y_dir = 1
 
 var player_can_hit = false
 
+enum state {NORMAL, KNOCKBACK}
+
+var enemy_state = state.NORMAL
+
 func _physics_process(delta):
-	if follow_player == true:
-		for node in get_tree().get_nodes_in_group("Player"):
-			#dir = (node.global_position.x - global_position.x)#.normalized()
-			var t = (node.global_position.x - global_position.x)#.normalized()
-			if t < 0:
-				x_dir = -1
-				$Sprite.flip_h = true
-			elif t > 0:
-				x_dir = 1
-				$Sprite.flip_h = false
-			var k = (node.global_position.y - global_position.y)
-			if k < 0:
-				y_dir = -1
-			elif k > 0:
-				y_dir = 1
-	velocity.x = SPEED * x_dir
-	velocity.y = SPEED * y_dir
+	if enemy_state == state.NORMAL:
+		if follow_player == true:
+			for node in get_tree().get_nodes_in_group("Player"):
+				#dir = (node.global_position.x - global_position.x)#.normalized()
+				var t = (node.global_position.x - global_position.x)#.normalized()
+				if t < 0:
+					x_dir = -1
+					$Sprite.flip_h = true
+				elif t > 0:
+					x_dir = 1
+					$Sprite.flip_h = false
+				var k = (node.global_position.y - global_position.y)
+				if k < 0:
+					y_dir = -1
+				elif k > 0:
+					y_dir = 1
+		velocity.x = SPEED * x_dir
+		velocity.y = SPEED * y_dir
 	
-	$AnimationPlayer.play("Bat Fly")
-	
+		$AnimationPlayer.play("Bat Fly")
+	if enemy_state == state.KNOCKBACK:
+		velocity.x = SPEED * x_dir * 50
 	if player_can_hit == true and PlayerStats.attacking == true:
 		health -= PlayerStats.attack_power
+		enemy_state = state.KNOCKBACK
+		for node in get_tree().get_nodes_in_group("Player"):
+				#dir = (node.global_position.x - global_position.x)#.normalized()
+				var t = (node.global_position.x - global_position.x)#.normalized()
+				if t < 0:
+					x_dir = 1
+					$Sprite.flip_h = true
+				elif t > 0:
+					x_dir = -1
+					$Sprite.flip_h = false
 
 	
 	velocity = move_and_slide(velocity, FLOOR)
