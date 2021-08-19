@@ -73,7 +73,11 @@ scale = Vector2( 1, 1.24 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitZone"]
 shape = SubResource( 4 )
 
+[node name="KnockbackTimer" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="area_entered" from="DetectionZone" to="." method="_on_DetectionZone_area_entered"]
 [connection signal="area_exited" from="DetectionZone" to="." method="_on_DetectionZone_area_exited"]
 [connection signal="area_entered" from="HitZone" to="." method="_on_HitZone_area_entered"]
 [connection signal="area_exited" from="HitZone" to="." method="_on_HitZone_area_exited"]
+[connection signal="timeout" from="KnockbackTimer" to="." method="_on_KnockbackTimer_timeout"]

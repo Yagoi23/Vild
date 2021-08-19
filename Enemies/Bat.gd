@@ -12,7 +12,7 @@ onready var EnemySenseLight = $EnemySenseLight
 
 var velocity = Vector2()
 
-var health = 10000
+var health = 100
 
 var x_dir = 1
 var y_dir = 1
@@ -45,10 +45,11 @@ func _physics_process(delta):
 	
 		$AnimationPlayer.play("Bat Fly")
 	if enemy_state == state.KNOCKBACK:
-		velocity.x = SPEED * x_dir * 50
+		velocity.x = SPEED * x_dir * 10
 	if player_can_hit == true and PlayerStats.attacking == true:
 		health -= PlayerStats.attack_power
 		enemy_state = state.KNOCKBACK
+		$KnockbackTimer.start()
 		for node in get_tree().get_nodes_in_group("Player"):
 				#dir = (node.global_position.x - global_position.x)#.normalized()
 				var t = (node.global_position.x - global_position.x)#.normalized()
@@ -74,6 +75,7 @@ func _process(delta):
 	
 	
 	if health <= 0:
+		PlayerStats.xp += 10000
 		queue_free()
 
 func _on_DetectionZone_area_entered(area):
@@ -97,3 +99,7 @@ func _on_HitZone_area_entered(area):
 func _on_HitZone_area_exited(area):
 	if area.is_in_group("Player_Attack"):
 		player_can_hit = false
+
+
+func _on_KnockbackTimer_timeout():
+	enemy_state = state.NORMAL

@@ -26,6 +26,9 @@ margin_top = 55.0
 margin_right = 124.0
 margin_bottom = 196.0
 texture_normal = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="NewGame" type="TextureButton" parent="."]
 anchor_left = 0.5

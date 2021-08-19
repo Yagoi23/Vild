@@ -13,6 +13,15 @@ var attacking = false
 
 var Enemy_Sense = false
 
+var xp = 0
+
+func _process(delta):
+	if xp >= 100:
+		xp = 0
+		Max_Health += 10
+		Max_Stamina += 10
+		attack_power += 1
+
 func _onready():
 	Health = 100
 	Max_Health = 100
