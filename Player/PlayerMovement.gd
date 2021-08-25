@@ -96,6 +96,7 @@ func _physics_process(delta):
 		player_state = state.IDLE
 	if PlayerStats.Apply_Knockback == true:
 		PlayerStats.Apply_Knockback = false
+		velocity.y = -180 - rand_range(0,100)
 		player_state = state.KNOCKBACK
 	#print(state.keys()[player_state])
 	if player_state == state.ATTACKING:
@@ -147,20 +148,20 @@ func _physics_process(delta):
 #Knockback
 #------------------------------------------------------------------------------
 	elif player_state == state.KNOCKBACK:
-		if counter == 0:
-			velocity.y = -180 - rand_range(0,100)
-		counter += 1
-		if Sprite.visible == true:
-			Sprite.visible = false
-		else:
-			Sprite.visible = true
+		#if counter == 0:
+		#	pass
+		#counter += 1
+		#if Sprite.visible == true:
+		#	Sprite.visible = false
+		#else:
+		#	Sprite.visible = true
 		velocity.y += gravity * delta
 		velocity = move_and_slide(velocity, Vector2.UP)
 		#print(counter)
-		if counter == 10:
-			player_state = state.JUMP
-			counter = 0
-			Sprite.visible = true
+		#if counter == 10:
+		#	player_state = state.JUMP
+		#	counter = 0
+		#	Sprite.visible = true
 #------------------------------------------------------------------------------
 #Air Speed
 #------------------------------------------------------------------------------

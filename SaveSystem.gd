@@ -5,6 +5,9 @@ var saveData = {
 	"Max_Health" : 1,
 	"Max_Stamina" : 1,
 	"attack_power" : 1,
+	"stat_points" : 1,
+	"xp" : 1,
+	"gold": 1,
 	"Last_Checkpoint_x": null,
 	"Last_Checkpoint_y": null,
 	"Last_Level": null
@@ -16,6 +19,9 @@ func edit_data():
 	saveData.Max_Health = PlayerStats.Max_Health
 	saveData.Max_Stamina = PlayerStats.Max_Stamina
 	saveData.attack_power = PlayerStats.attack_power
+	saveData.stat_points = PlayerStats.stat_points
+	saveData.xp = PlayerStats.xp
+	saveData.gold = PlayerStats.gold
 	
 	saveData.Last_Checkpoint_x = Checkpoint.last_position.x
 	saveData.Last_Checkpoint_y = Checkpoint.last_position.y
@@ -48,6 +54,9 @@ func load_data():
 		saveData.Max_Health = nodeData["Max_Health"]
 		saveData.Max_Stamina = nodeData["Max_Stamina"]
 		saveData.attack_power = nodeData["attack_power"]
+		saveData.stat_points = nodeData["stat_points"]
+		saveData.xp = nodeData["xp"]
+		saveData.gold = nodeData["gold"]
 		
 		saveData.Last_Checkpoint_x = nodeData["Last_Checkpoint_x"]
 		saveData.Last_Checkpoint_y = nodeData["Last_Checkpoint_y"]
@@ -57,6 +66,9 @@ func load_data():
 		PlayerStats.Max_Health = saveData.Max_Health
 		PlayerStats.Max_Stamina = saveData.Max_Stamina
 		PlayerStats.attack_power = saveData.attack_power
+		PlayerStats.stat_points = saveData.stat_points
+		PlayerStats.xp = saveData.xp
+		PlayerStats.gold = saveData.gold
 		
 		Checkpoint.last_level = saveData.Last_Level
 		

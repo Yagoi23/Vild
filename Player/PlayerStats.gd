@@ -13,17 +13,19 @@ var attacking = false
 
 var Enemy_Sense = false
 
+var stat_points = 0
+
 var xp_needed = 0
 var xp = 0
+
+var gold = 0
 
 func _process(delta):
 	xp_needed = int(round((Max_Health + Max_Stamina + attack_power)/2))
 	xp = int(round(xp))
 	if xp >= xp_needed:
 		xp = 0
-		Max_Health += 1
-		Max_Stamina += 1
-		attack_power += 1
+		stat_points += 1
 		print("lvl up")
 	if Health > Max_Health:
 		Health = Max_Health

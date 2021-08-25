@@ -25,6 +25,7 @@ func _physics_process(delta):
 func _on_HitZone_area_entered(area):
 	if area.is_in_group("Player"):
 		PlayerStats.hit_player(10)
+		PlayerStats.Apply_Knockback = true
 
 var health = rand_range(1,10)
 var player_can_hit = false

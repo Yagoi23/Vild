@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Ui/Pause Menu/PauseMenu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Ui/Paused Title.png" type="Texture" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://Assets/Ui/SP.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Ui/AP.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Ui/XP.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Ui/PP.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Ui/PlusButton.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Ui/PlusButton Green.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Ui/Gold.png" type="Texture" id=16]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.729412, 0.368627, 1 )
@@ -79,13 +83,14 @@ __meta__ = {
 [node name="Stats" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+rect_scale = Vector2( 2, 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BlackBox" type="ColorRect" parent="Stats"]
-margin_right = 64.0
-margin_bottom = 64.0
+margin_right = 105.0
+margin_bottom = 73.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -94,18 +99,8 @@ __meta__ = {
 [node name="WhiteBox" type="ColorRect" parent="Stats"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 60.0
-margin_bottom = 60.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BlackBox2" type="ColorRect" parent="Stats/WhiteBox"]
-margin_left = 1.26517
-margin_top = 48.5303
-margin_right = 54.2652
-margin_bottom = 54.5303
-color = Color( 0, 0, 0, 1 )
+margin_right = 101.0
+margin_bottom = 69.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -131,6 +126,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HP_UP" type="TextureButton" parent="Stats/HP"]
+margin_left = 90.0
+margin_top = 8.25
+margin_right = 106.0
+margin_bottom = 24.25
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 15 )
+expand = true
+
 [node name="SP" type="TextureButton" parent="Stats"]
 margin_left = -2.16912
 margin_top = 4.0
@@ -151,6 +156,16 @@ text = "123"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SP_UP" type="TextureButton" parent="Stats/SP"]
+margin_left = 90.0
+margin_top = 7.805
+margin_right = 106.0
+margin_bottom = 23.805
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 15 )
+expand = true
 
 [node name="AP" type="TextureButton" parent="Stats"]
 margin_left = -2.16912
@@ -173,11 +188,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AP_UP" type="TextureButton" parent="Stats/AP"]
+margin_left = 90.0
+margin_top = 8.028
+margin_right = 106.0
+margin_bottom = 24.028
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 15 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PP" type="TextureButton" parent="Stats"]
+margin_left = -2.16912
+margin_top = 47.0616
+margin_right = 37.8309
+margin_bottom = 87.0616
+texture_normal = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Stats/PP"]
+margin_left = 28.0772
+margin_top = 12.7984
+margin_right = 68.0772
+margin_bottom = 26.7984
+custom_fonts/font = ExtResource( 9 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="XP" type="TextureButton" parent="Stats"]
 margin_left = -2.16912
-margin_top = 30.7984
+margin_top = 28.866
 margin_right = 37.8309
-margin_bottom = 70.7984
+margin_bottom = 68.866
 texture_normal = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -194,11 +243,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="XP_Bar" type="ProgressBar" parent="Stats"]
-margin_left = 6.17678
-margin_top = 54.1468
-margin_right = 57.1768
-margin_bottom = 58.1468
+[node name="BlackBox2" type="ColorRect" parent="Stats/XP"]
+margin_left = 7.43428
+margin_top = 21.7319
+margin_right = 60.4343
+margin_bottom = 27.7319
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XP_Bar" type="ProgressBar" parent="Stats/XP"]
+margin_left = 8.34589
+margin_top = 23.3484
+margin_right = 59.3459
+margin_bottom = 27.3484
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 value = 100.0
@@ -207,5 +266,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Gold" type="TextureButton" parent="Stats"]
+margin_left = 63.6156
+margin_top = 46.2445
+margin_right = 95.6156
+margin_bottom = 62.2445
+texture_normal = ExtResource( 16 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Stats/Gold"]
+margin_left = -4.68809
+margin_top = 11.3438
+margin_right = 35.3119
+margin_bottom = 25.3438
+custom_fonts/font = ExtResource( 9 )
+text = "123"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="MainMenu" to="." method="_on_MainMenu_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Stats/HP/HP_UP" to="." method="_on_HP_UP_pressed"]
+[connection signal="pressed" from="Stats/SP/SP_UP" to="." method="_on_SP_UP_pressed"]
+[connection signal="pressed" from="Stats/AP/AP_UP" to="." method="_on_AP_UP_pressed"]

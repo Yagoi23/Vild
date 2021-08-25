@@ -23,6 +23,9 @@ func _on_NewGame_pressed():
 	PlayerStats.attack_power = 1
 	PlayerStats.Health = 10
 	PlayerStats.Stamina = 10
+	PlayerStats.stat_points = 0
+	PlayerStats.xp = 0
+	PlayerStats.gold = 10
 	PlayerStats.attacking = false
 
 

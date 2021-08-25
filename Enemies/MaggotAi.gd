@@ -47,3 +47,9 @@ func _on_Area2D_area_entered(area):
 func _on_Area2D_area_exited(area):
 	if area.is_in_group("Player_Attack"):
 		player_can_hit = false
+
+
+func _on_HitZone_area_entered(area):
+	if area.is_in_group("Player"):
+		PlayerStats.hit_player(10)
+		PlayerStats.Apply_Knockback = true

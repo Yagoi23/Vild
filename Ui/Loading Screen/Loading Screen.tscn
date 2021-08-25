@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Font/BlackOutlineFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Ui/Loading Screen/Loading Screen.gd" type="Script" id=2]
+
+[node name="Loading Screen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tips" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -40.0
+margin_right = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Tips"]
+wait_time = 5.0
+
+[node name="Tips" type="Label" parent="Tips"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -427.754
+margin_top = -67.1937
+margin_right = -207.754
+margin_bottom = -48.1937
+rect_scale = Vector2( 4, 4 )
+custom_fonts/font = ExtResource( 1 )
+text = "testing testing 12345678910 abcdefghijklmnopqrstuvwxyz"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="Tips/Timer" to="." method="_on_Timer_timeout"]
