@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://TileSet/BW.tres" type="TileSet" id=1]
 [ext_resource path="res://Hazards/Spikes.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Levels/Ruinous Road/Exit to Level2.gd" type="Script" id=10]
 [ext_resource path="res://Direction Arrows/SimpleArrowDown.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Enemies/Normal Maggot Spawner.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Ui/Pause Menu/Can_Pause.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 16 )
@@ -175,6 +176,8 @@ position = Vector2( 504, 542.949 )
 
 [node name="Normal Maggot Spawner2" parent="." instance=ExtResource( 12 )]
 position = Vector2( 648, 423.066 )
+
+[node name="Can Pause" parent="." instance=ExtResource( 13 )]
 
 [connection signal="area_entered" from="Exits/Area2D" to="Exits/Area2D" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Exits/Area2D" to="Exits/Area2D" method="_on_Area2D_area_exited"]

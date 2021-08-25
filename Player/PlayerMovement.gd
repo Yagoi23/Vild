@@ -40,7 +40,12 @@ onready var AnimationPlayer = $AnimationPlayer
 func _ready():
 	player_state = state.IDLE
 
+var paused = false
+onready var pause_menu = $ViewportContainer/CanvasLayer/PauseMenu
+
 func get_input():
+
+
 	move_dir = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if player_state != state.KNOCKBACK and player_state != state.SWIMMING and player_state != state.ATTACKING:
 		if move_dir != 0:

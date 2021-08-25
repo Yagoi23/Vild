@@ -10,3 +10,4 @@ func _enter_tree():
 		$Player.global_position = Checkpoint.exit_door_cords
 	#else:
 	#	$Player.global_position =  Checkpoint.door_exit_cords
+
