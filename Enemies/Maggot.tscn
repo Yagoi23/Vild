@@ -27,7 +27,7 @@ tracks/0/keys = {
 extents = Vector2( 10, 5.3354 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 8.05865, 4.29797 )
+extents = Vector2( 14.3109, 4.29797 )
 
 [node name="Maggot" type="KinematicBody2D" groups=[
 "Enemy",
@@ -61,7 +61,7 @@ position = Vector2( -4.03385, 0.0350761 )
 scale = Vector2( 0.5, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitZone"]
-position = Vector2( 0, -2.4411 )
+position = Vector2( 8.14619, -2.51993 )
 shape = SubResource( 4 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]

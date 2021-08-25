@@ -42,7 +42,7 @@ func _process(delta):
 		health -= PlayerStats.attack_power
 	
 	if health <= 0:
-		PlayerStats.xp += rand_range(10,1000)
+		PlayerStats.xp += rand_range(1,10)
 		queue_free()
 
 func _on_Area2D_area_entered(area):

@@ -24,7 +24,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 8.05865, 4.29797 )
+extents = Vector2( 14.455, 4.29797 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 10, 5.3354 )
@@ -56,7 +56,7 @@ enabled = true
 cast_to = Vector2( 0, 2 )
 
 [node name="HitZone" type="Area2D" parent="."]
-position = Vector2( -4.03385, 0.0350761 )
+position = Vector2( -0.0572209, -0.0436688 )
 scale = Vector2( 0.5, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitZone"]
