@@ -23,6 +23,7 @@ func _on_NewGame_pressed():
 	PlayerStats.attack_power = 1
 	PlayerStats.Health = 10
 	PlayerStats.Stamina = 10
+	PlayerStats.attacking = false
 
 
 func _on_LoadGame_pressed():
