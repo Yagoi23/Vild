@@ -75,7 +75,7 @@ func _process(delta):
 	
 	
 	if health <= 0:
-		PlayerStats.xp += 10000
+		PlayerStats.xp += 1
 		queue_free()
 
 func _on_DetectionZone_area_entered(area):

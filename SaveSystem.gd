@@ -4,6 +4,7 @@ extends Node
 var saveData = {
 	"Max_Health" : 1,
 	"Max_Stamina" : 1,
+	"attack_power" : 1,
 	"Last_Checkpoint_x": null,
 	"Last_Checkpoint_y": null,
 	"Last_Level": null
@@ -14,6 +15,7 @@ var saveGameFileName = "user://playerData.txt"
 func edit_data():
 	saveData.Max_Health = PlayerStats.Max_Health
 	saveData.Max_Stamina = PlayerStats.Max_Stamina
+	saveData.attack_power = PlayerStats.attack_power
 	
 	saveData.Last_Checkpoint_x = Checkpoint.last_position.x
 	saveData.Last_Checkpoint_y = Checkpoint.last_position.y
@@ -45,6 +47,7 @@ func load_data():
 		
 		saveData.Max_Health = nodeData["Max_Health"]
 		saveData.Max_Stamina = nodeData["Max_Stamina"]
+		saveData.attack_power = nodeData["attack_power"]
 		
 		saveData.Last_Checkpoint_x = nodeData["Last_Checkpoint_x"]
 		saveData.Last_Checkpoint_y = nodeData["Last_Checkpoint_y"]
@@ -53,6 +56,7 @@ func load_data():
 		
 		PlayerStats.Max_Health = saveData.Max_Health
 		PlayerStats.Max_Stamina = saveData.Max_Stamina
+		PlayerStats.attack_power = saveData.attack_power
 		
 		Checkpoint.last_level = saveData.Last_Level
 		

@@ -18,6 +18,11 @@ func _ready():
 
 func _on_NewGame_pressed():
 	get_tree().change_scene("res://Levels/Ruinous Road/Starting Level.tscn")
+	PlayerStats.Max_Health = 10
+	PlayerStats.Max_Stamina = 10
+	PlayerStats.attack_power = 1
+	PlayerStats.Health = 10
+	PlayerStats.Stamina = 10
 
 
 func _on_LoadGame_pressed():
