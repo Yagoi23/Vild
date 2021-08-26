@@ -26,3 +26,8 @@ func _on_LoadGame_pressed():
 	Checkpoint.dead = true
 	get_tree().change_scene(Checkpoint.last_level)
 	
+
+
+func _on_Vild_pressed():
+	$Vild.disabled = true
+	pass # Replace with function body.

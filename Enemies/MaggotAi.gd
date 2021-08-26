@@ -11,6 +11,8 @@ var dir = 1
 var health = rand_range(1,1000)
 var player_can_hit = false
 
+onready var BLOOD_PARTICLE = $Blood
+
 func _process(delta):
 	if PlayerStats.Enemy_Sense == true:
 		SPRITE.modulate = Color(255,0,0) # turn sprite red
@@ -21,7 +23,9 @@ func _process(delta):
 	
 	if player_can_hit == true and PlayerStats.attacking == true:
 		health -= PlayerStats.attack_power
-	
+		BLOOD_PARTICLE.emitting = true
+	else:
+		BLOOD_PARTICLE.emitting = false
 	if health <= 0:
 		PlayerStats.xp += rand_range(1,10)
 		queue_free()

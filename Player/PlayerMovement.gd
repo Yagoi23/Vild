@@ -44,8 +44,6 @@ var paused = false
 onready var pause_menu = $ViewportContainer/CanvasLayer/PauseMenu
 
 func get_input():
-
-
 	move_dir = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if player_state != state.KNOCKBACK and player_state != state.SWIMMING and player_state != state.ATTACKING:
 		if move_dir != 0:
@@ -89,10 +87,10 @@ func PlayerDied():
 func _physics_process(delta):
 	Sprite.visible = true
 	print(player_state)
-	if PlayerStats.attacking == true and player_state != state.KNOCKBACK:
+	if PlayerStats.attacking == true and player_state != state.KNOCKBACK and player_state != state.SWIMMING:
 		#PlayerStats.Apply_Knockback = false
 		player_state = state.ATTACKING
-	elif PlayerStats.attacking == false:
+	elif PlayerStats.attacking == false and player_state != state.SWIMMING:
 		player_state = state.IDLE
 	if PlayerStats.Apply_Knockback == true:
 		PlayerStats.Apply_Knockback = false
