@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://TileSet/BW.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Font/BlackOutlineFont.tres" type="DynamicFont" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Ui/Pause Menu/Can_Pause.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Direction Arrows/SimpleArrowDown.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Checkpoint/FakeCheckpoint.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Items/Nacho.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 48 )
@@ -237,6 +238,9 @@ position = Vector2( 384, 160 )
 
 [node name="Maggot" parent="TileMap" instance=ExtResource( 7 )]
 position = Vector2( 560, 144 )
+
+[node name="Nacho" parent="TileMap" instance=ExtResource( 15 )]
+position = Vector2( 96, -320 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 119.38, 73.0537 )
