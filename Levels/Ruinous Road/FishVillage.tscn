@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://TileSet/BW.tres" type="TileSet" id=1]
+[ext_resource path="res://Checkpoint/Checkpoint.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/Ruinous Road/Level2.gd" type="Script" id=5]
+[ext_resource path="res://Direction Arrows/SimpleArrowDown.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Levels/Ruinous Road/ToLevel1.gd" type="Script" id=7]
+[ext_resource path="res://Ui/Pause Menu/Can_Pause.tscn" type="PackedScene" id=11]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 16 )
+
+[node name="Level2" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect" type="ColorRect" parent="CanvasModulate"]
+margin_left = -408.0
+margin_top = -344.0
+margin_right = 2796.0
+margin_bottom = 1040.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 8, 8 )
+collision_layer = 3
+collision_mask = 3
+format = 1
+tile_data = PoolIntArray( 1376300, 41, 0, 1376312, 41, 0, 1572915, 42, 0, 1835034, 28, 0, 1835035, 28, 0, 1835036, 28, 0, 1835037, 28, 0, 1835044, 0, 0, 1835047, 0, 0, 1835051, 28, 0, 1835052, 28, 0, 1835053, 28, 0, 1835054, 28, 0, 1835055, 28, 0, 1835056, 28, 0, 1835057, 28, 0, 1835058, 28, 0, 1835059, 28, 0, 1835060, 28, 0, 1835061, 28, 0, 1835062, 28, 0, 1835063, 28, 0, 1835064, 28, 0, 1835065, 28, 0, 1835066, 28, 0, 1835067, 28, 0, 1835068, 28, 0, 1835069, 28, 0, 1835070, 28, 0, 1900574, 28, 0, 1900575, 28, 0, 1900576, 28, 0, 1900577, 28, 0, 1900578, 28, 0, 1900579, 28, 0, 1900580, 0, 0, 1900583, 0, 0, 1900584, 28, 0, 1900585, 28, 0, 1900586, 28, 0, 1966116, 0, 0, 1966119, 0, 0, 2031652, 0, 0, 2031655, 0, 0, 2097188, 0, 0, 2097191, 0, 0, 2162724, 0, 0, 2162727, 0, 0, 2228260, 0, 0, 2228263, 0, 0, 2293796, 0, 0, 2293799, 0, 0, 2359332, 0, 0, 2359335, 0, 0, 2424868, 0, 0, 2424871, 0, 0, 2490404, 0, 0, 2490407, 0, 0, 2555940, 0, 0, 2555943, 0, 0, 2621476, 0, 0, 2621479, 0, 0, 2687012, 0, 0, 2687015, 0, 0 )
+
+[node name="WaterBelow" type="TileMap" parent="TileMap"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="WaterAbove" type="TileMap" parent="TileMap"]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 8, 8 )
+format = 1
+
+[node name="Checkpoints" type="Node" parent="."]
+
+[node name="Checkpoint" parent="Checkpoints" instance=ExtResource( 2 )]
+position = Vector2( 264, 224 )
+
+[node name="Exits" type="Node" parent="."]
+
+[node name="To Level 1" type="Area2D" parent="Exits"]
+position = Vector2( 688, 352 )
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exits/To Level 1"]
+position = Vector2( -656, -224 )
+shape = SubResource( 1 )
+
+[node name="ArrowDown" parent="Exits/To Level 1" instance=ExtResource( 6 )]
+position = Vector2( -656, -240 )
+
+[node name="Can Pause" parent="." instance=ExtResource( 11 )]
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 272, 208 )
+
+[connection signal="area_entered" from="Exits/To Level 1" to="Exits/To Level 1" method="_on_To_Level_1_area_entered"]
+[connection signal="area_exited" from="Exits/To Level 1" to="Exits/To Level 1" method="_on_To_Level_1_area_exited"]

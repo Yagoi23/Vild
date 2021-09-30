@@ -39,6 +39,7 @@ onready var AnimationPlayer = $AnimationPlayer
 
 func _ready():
 	player_state = state.IDLE
+	
 
 var paused = false
 onready var pause_menu = $ViewportContainer/CanvasLayer/PauseMenu

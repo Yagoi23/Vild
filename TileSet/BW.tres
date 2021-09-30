@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=21 format=2]
+[gd_resource type="TileSet" load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Tilesets/bw_tiles.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tilesets/Water/Water.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Assets/Tilesets/HalfDoor.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Tilesets/Water/WaterBelow.tres" type="Texture" id=6]
 [ext_resource path="res://Assets/Tilesets/Water/WaterBelow.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Tilesets/House1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Tilesets/House.png" type="Texture" id=9]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 8, 0, 8, 8, 0, 8 )
@@ -689,3 +691,31 @@ resource_name = "Water"
 40/shape_one_way_margin = 0.0
 40/shapes = [  ]
 40/z_index = 0
+41/name = "House1.png 41"
+41/texture = ExtResource( 8 )
+41/tex_offset = Vector2( 0, 0 )
+41/modulate = Color( 1, 1, 1, 1 )
+41/region = Rect2( 8, 8, 48, 56 )
+41/tile_mode = 0
+41/occluder_offset = Vector2( 0, 0 )
+41/navigation_offset = Vector2( 0, 0 )
+41/shape_offset = Vector2( 0, 0 )
+41/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+41/shape_one_way = false
+41/shape_one_way_margin = 0.0
+41/shapes = [  ]
+41/z_index = 0
+42/name = "House.png 42"
+42/texture = ExtResource( 9 )
+42/tex_offset = Vector2( 0, 0 )
+42/modulate = Color( 1, 1, 1, 1 )
+42/region = Rect2( 0, 0, 32, 32 )
+42/tile_mode = 0
+42/occluder_offset = Vector2( 0, 0 )
+42/navigation_offset = Vector2( 0, 0 )
+42/shape_offset = Vector2( 0, 0 )
+42/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+42/shape_one_way = false
+42/shape_one_way_margin = 0.0
+42/shapes = [  ]
+42/z_index = 0
