@@ -17,7 +17,7 @@ var health = 100 #sets the variable health to 100 it is set as a variabvle and r
 var x_dir = 1 #presets the directiom to 1
 var y_dir = 1 #presets the directiom to 1
 #this used to be a blank space
-var player_can_hit = false #wether or not the player can hit this enemy
+var player_can_hit = false #weather or not the player can hit this enemy
 #this used to be a blank space
 enum state {NORMAL, KNOCKBACK} #this is the state machine that handles wether or not this enemy is being knockbacked
 #this used to be a blank space
@@ -26,34 +26,34 @@ var enemy_state = state.NORMAL #presets the enemys state to normal
 func _physics_process(delta): #
 	if enemy_state == state.NORMAL: #checks if the  the enemy is in a normal state
 		if follow_player == true:#if the variable follow player is true -> this is when the player has entered the bats detection range and it is set to move towards the player
-			for node in get_tree().get_nodes_in_group("Player"):
-				#dir = (node.global_position.x - global_position.x)#.normalized()
-				var t = (node.global_position.x - global_position.x)#.normalized()
-				if t < 0:
-					x_dir = -1
-					$Sprite.flip_h = true
-				elif t > 0:
-					x_dir = 1
-					$Sprite.flip_h = false
-				var k = (node.global_position.y - global_position.y)
-				if k < 0:
-					y_dir = -1
-				elif k > 0:
-					y_dir = 1
-		velocity.x = SPEED * x_dir
-		velocity.y = SPEED * y_dir
+			for node in get_tree().get_nodes_in_group("Player"): #finds the nodes in the tree in the group player
+				#dir = (node.global_position.x - global_position.x)#.normalized() # old code
+				var t = (node.global_position.x - global_position.x)#.normalized() #sets the variable t to the x cordinate of the player - this nodes current x position
+				if t < 0: #if t is less the 0 -> if the player is in the negative direction in proportion to this node
+					x_dir = -1 #makes the x dir negative 1 which makes the enemy move in the negative direction
+					$Sprite.flip_h = true #flips the sprite so it points in the negative direction
+				elif t > 0: #if t is greater then 0 -> if the player is in the positive direction in proportion to this node
+					x_dir = 1 #makes the x dir 1 which makes the enemy move in the positive direction
+					$Sprite.flip_h = false #makes the sprite not flipped
+				var k = (node.global_position.y - global_position.y)#finds the players y position in relation to this nodes
+				if k < 0: #if k is less then 0 -> if the player is in the negative y direction in proportion to this node
+					y_dir = -1 #makes the y dir negative 1 which makes the enemy move in the negative y direction
+				elif k > 0: #if k is greater then 0 -> if the player is in the positive y direction in proportion to this node
+					y_dir = 1 #makes the y dir positive 1 which makes the enemy move in the positive y direction
+		velocity.x = SPEED * x_dir #sets this nodes x velocity to SPEED multiplied by the x direction making the enemy move towards the player on the x axis
+		velocity.y = SPEED * y_dir #sets this nodes y velocity to SPEED multiplied by the y direction making the enemy move towards the player on the y axis
 	#this used to be a blank space
-		$AnimationPlayer.play("Bat Fly")
-	if enemy_state == state.KNOCKBACK:
-		velocity.x = SPEED * x_dir * 10
-	if player_can_hit == true and PlayerStats.attacking == true:
-		health -= PlayerStats.attack_power
-		enemy_state = state.KNOCKBACK
-		$KnockbackTimer.start()
-		for node in get_tree().get_nodes_in_group("Player"):
-				#dir = (node.global_position.x - global_position.x)#.normalized()
-				var t = (node.global_position.x - global_position.x)#.normalized()
-				if t < 0:
+		$AnimationPlayer.play("Bat Fly") #plays the flying animation
+	if enemy_state == state.KNOCKBACK: #if this node is in the knockback state
+		velocity.x = SPEED * x_dir * 10 #moves the enemy when it is being knockbacked
+	if player_can_hit == true and PlayerStats.attacking == true: #if the variable player can hit is true and the player is attacking
+		health -= PlayerStats.attack_power #decreases this nodes health variable by the players attack power
+		enemy_state = state.KNOCKBACK #sets the enemy state to the knockback state
+		$KnockbackTimer.start() #starts atimer that controls how long the enemy is in the knockback state
+		for node in get_tree().get_nodes_in_group("Player"): #finds the player node in the tree
+				#dir = (node.global_position.x - global_position.x)#.normalized() # old code
+				var t = (node.global_position.x - global_position.x)#.normalized() #sets the variable t to the x cordinate of the player - this nodes current x position
+				if t < 0: #
 					x_dir = 1
 					$Sprite.flip_h = true
 				elif t > 0:
