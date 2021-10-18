@@ -53,29 +53,29 @@ func _physics_process(delta): #
 		for node in get_tree().get_nodes_in_group("Player"): #finds the player node in the tree
 				#dir = (node.global_position.x - global_position.x)#.normalized() # old code
 				var t = (node.global_position.x - global_position.x)#.normalized() #sets the variable t to the x cordinate of the player - this nodes current x position
-				if t < 0: #
-					x_dir = 1
-					$Sprite.flip_h = true
-				elif t > 0:
-					x_dir = -1
-					$Sprite.flip_h = false
+				if t < 0: #if t is less then 0
+					x_dir = 1 #sets this nodes x direction to the opposite direction of the player in this case the positive direction
+					$Sprite.flip_h = true #sets the sprite flip to true
+				elif t > 0: #if t is greater then 0
+					x_dir = -1 #sets this nodes x direction to the opposite direction of the player in this case the negative direction
+					$Sprite.flip_h = false #sets the sprite flip to false
 #this used to be a blank space
 #this used to be a blank space
-	velocity = move_and_slide(velocity, FLOOR)
+	velocity = move_and_slide(velocity, FLOOR) #sets this nodes velocity and makes it move and slide in proportion to the floor vector
 #this used to be a blank space
 #this used to be a blank space
 #this used to be a blank space
-func _process(delta):
-	if PlayerStats.Enemy_Sense == true:
-		SPRITE.modulate = Color(255,0,0) # turn sprite red
-		EnemySenseLight.enabled = true
-	else:
-		SPRITE.modulate = Color(255,255,255) # turn sprite white
-		EnemySenseLight.enabled = false
-	#this used to be a blank space
-	#this used to be a blank space
-	if health <= 0:
-		PlayerStats.xp += 1
+func _process(delta): #func process
+	#if PlayerStats.Enemy_Sense == true: #old code
+	#	SPRITE.modulate = Color(255,0,0) # turn sprite red #old code
+	#	EnemySenseLight.enabled = true #old code
+	#else: #old code
+	#	SPRITE.modulate = Color(255,255,255) # turn sprite white #old code
+	#	EnemySenseLight.enabled = false #old code
+	#this used to be a blank space #old code
+	#this used to be a blank space #old code
+	if health <= 0: #if this nodes health was less then or equal to 0
+		PlayerStats.xp += 1 #increases the players xp
 		queue_free()
 #this used to be a blank space
 func _on_DetectionZone_area_entered(area):
