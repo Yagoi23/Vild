@@ -76,7 +76,7 @@ func _process(delta): #func process
 	#this used to be a blank space #old code
 	if health <= 0: #if this nodes health was less then or equal to 0
 		PlayerStats.xp += 1 #increases the players xp
-		queue_free()
+		queue_free() #deletes this node
 #this used to be a blank space
 func _on_DetectionZone_area_entered(area):
 	if area.is_in_group("Player"):
