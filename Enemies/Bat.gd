@@ -78,29 +78,30 @@ func _process(delta): #func process
 		PlayerStats.xp += 1 #increases the players xp
 		queue_free() #deletes this node
 #this used to be a blank space
-func _on_DetectionZone_area_entered(area):
-	if area.is_in_group("Player"):
-		follow_player = true
+func _on_DetectionZone_area_entered(area): #when the detection zone area is entered
+	if area.is_in_group("Player"): #if the area that has entered is in the player group
+		follow_player = true #the variable follow player is now true
 #this used to be a blank space
 #this used to be a blank space
-func _on_DetectionZone_area_exited(area):
-	if area.is_in_group("Player"):
-		follow_player = false
+func _on_DetectionZone_area_exited(area): #when the detection zone area is exited
+	if area.is_in_group("Player"): #if the area that has entered is in the player group
+		follow_player = false #the variable follow player is now false
 #this used to be a blank space
-func _on_HitZone_area_entered(area):
-	if area.is_in_group("Player"):
-		PlayerStats.hit_player(10)
-	if area.is_in_group("Player_Attack"):
-		player_can_hit = true
+func _on_HitZone_area_entered(area): #when the hit zone is entered
+	if area.is_in_group("Player"): #if the area is player
+		PlayerStats.hit_player(10) #hits the player for 10 damage
+	if area.is_in_group("Player_Attack"): #if the area that has entered is in the player group
+		player_can_hit = true #sets can hit player to true
 		#collider.hit_enemy()
 		#print("Hit " + collider.name)
 #this used to be a blank space
 #this used to be a blank space
-func _on_HitZone_area_exited(area):
-	if area.is_in_group("Player_Attack"):
-		player_can_hit = false
+func _on_HitZone_area_exited(area): #when the hit zone is exited
+	if area.is_in_group("Player_Attack"): #if the area that has exited is in the player group
+		player_can_hit = false #sets can hit player to false
 #this used to be a blank space
 #this used to be a blank space
-func _on_KnockbackTimer_timeout():
-	enemy_state = state.NORMAL
+func _on_KnockbackTimer_timeout(): #when the knockback timer ends
+	enemy_state = state.NORMAL #sets the enemy state from the knockback state to normal
+#this used to be a blank space
 #this used to be a blank space
