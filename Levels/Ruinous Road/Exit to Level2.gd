@@ -1,14 +1,14 @@
-extends Area2D
-var can_travel = false
+extends Area2D #
+var can_travel = false #presets the variable can travel to false
 
 func _ready():
-	$ArrowDown.visible = false
+	$ArrowDown.visible = false #premakes the arrow invisible
 
 func _process(delta):
-	if can_travel == true and Input.is_action_just_pressed("w"):
-		print("travelled")
-		Checkpoint.exit_door_cords = Vector2(32, 131)
-		get_tree().change_scene("res://Levels/Ruinous Road/Level2.tscn")
+	if can_travel == true and Input.is_action_just_pressed("w"): #when the player pushes the w key
+		print("travelled")#prints travelled
+		Checkpoint.exit_door_cords = Vector2(32, 131) #sets the exit door coordinates to the coordinates the player needs to show up at
+		get_tree().change_scene("res://Levels/Ruinous Road/Level2.tscn") #
 		#Checkpoint.starting_level_exit = global_position
 
 func _on_Area2D_area_entered(area):

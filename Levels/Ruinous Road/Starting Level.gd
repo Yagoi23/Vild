@@ -1,6 +1,7 @@
 extends Node2D
 
 func _enter_tree():
+	PlayerStats.attacking = false
 	if Checkpoint.dead == true:
 		if Checkpoint.last_position:
 			$Player.global_position = Checkpoint.last_position

@@ -1,6 +1,6 @@
 extends Node
 
-#random bullshit go!
+#Sets the headings for the data 
 var saveData = {
 	"Max_Health" : 1,
 	"Max_Stamina" : 1,
@@ -15,6 +15,7 @@ var saveData = {
 
 var saveGameFileName = "user://playerData.txt"
 
+#edits the data
 func edit_data():
 	saveData.Max_Health = PlayerStats.Max_Health
 	saveData.Max_Stamina = PlayerStats.Max_Stamina
@@ -28,6 +29,7 @@ func edit_data():
 	
 	saveData.Last_Level = Checkpoint.last_level
 
+#saves the data
 func save_data():
 	self.edit_data()
 	
@@ -38,11 +40,12 @@ func save_data():
 	saveFile.store_line(to_json(saveData))
 	saveFile.close()
 
+#loads the data
 func load_data():
 	var dataFile = File.new()
 	
 
-	if not dataFile.file_exists(saveGameFileName):
+	if not dataFile.file_exists(saveGameFileName): #if their isn't data in file or the file doesn't exist it returns
 		print("error")
 		return
 
@@ -57,6 +60,7 @@ func load_data():
 		saveData.stat_points = nodeData["stat_points"]
 		saveData.xp = nodeData["xp"]
 		saveData.gold = nodeData["gold"]
+		saveData.lamp = nodeData["lamp"]
 		
 		saveData.Last_Checkpoint_x = nodeData["Last_Checkpoint_x"]
 		saveData.Last_Checkpoint_y = nodeData["Last_Checkpoint_y"]
@@ -69,6 +73,7 @@ func load_data():
 		PlayerStats.stat_points = saveData.stat_points
 		PlayerStats.xp = saveData.xp
 		PlayerStats.gold = saveData.gold
+		PlayerStats.lamp = saveData.lamp
 		
 		Checkpoint.last_level = saveData.Last_Level
 		

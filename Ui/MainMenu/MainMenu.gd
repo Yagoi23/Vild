@@ -19,6 +19,7 @@ func _ready():
 func _on_NewGame_pressed():
 	get_tree().change_scene("res://Levels/Tutorial.tscn")
 	PlayerStats.attacking = false
+	PlayerStats.Lamp = false
 
 
 func _on_LoadGame_pressed():

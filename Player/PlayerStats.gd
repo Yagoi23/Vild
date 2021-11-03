@@ -20,6 +20,8 @@ var xp = 0
 
 var gold = 0
 
+var Lamp = false
+
 func _process(delta):
 	xp_needed = int(round((Max_Health + Max_Stamina + attack_power)/2))
 	xp = int(round(xp))

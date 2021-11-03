@@ -73,6 +73,11 @@ func _on_AttackTimer_timeout():
 
 
 func _process(delta):
+	if PlayerStats.Lamp == true:
+		$Light2D.visible = true
+	else:
+		$Light2D.visible = false
+		
 	if Input.is_action_just_pressed("EnemySense"):
 		PlayerStats.Enemy_Sense = true
 		$EnemySenseTimer.start()
