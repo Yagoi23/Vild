@@ -60,6 +60,7 @@ visible = false
 shape = SubResource( 3 )
 
 [node name="EnemySenseLight" type="Light2D" parent="."]
+visible = false
 texture = ExtResource( 3 )
 texture_scale = 0.2
 color = Color( 1, 0, 0, 1 )

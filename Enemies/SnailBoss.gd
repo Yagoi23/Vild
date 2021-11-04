@@ -146,3 +146,8 @@ func _process(delta):
 	else:
 		SPRITE.modulate = Color(255,255,255) # turn sprite white
 	
+
+
+func _on_HitZone_area_entered(area):
+	if area.is_in_group("Player"):
+		PlayerStats.hit_player(10)
