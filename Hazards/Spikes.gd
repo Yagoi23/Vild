@@ -16,6 +16,6 @@ func _ready():
 #	pass
 
 
-func _on_Area2D_area_entered(area):
+func _on_Area2D_area_entered(area): #hits the player when they touch the spike
 	if area.is_in_group("Player"):
 		PlayerStats.hit_player(2)

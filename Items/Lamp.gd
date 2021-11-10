@@ -16,6 +16,6 @@ func _ready():
 #	pass
 
 
-func _on_Area2D_area_entered(area):
+func _on_Area2D_area_entered(area): #sets the variable lamp to true and then gets deleted
 	PlayerStats.Lamp = true
 	queue_free()

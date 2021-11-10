@@ -14,11 +14,11 @@ func _process(delta):
 	if Input.is_action_just_pressed("ui_up"):
 		PlayerStats.stat_points += 100
 		PlayerStats.gold += 100
-	if Pause.pause == false:
+	if Pause.pause == false: #makes the pause menu visible when the game is paused
 		visible = false
 	else:
 		visible = true
-	if PlayerStats.stat_points >= 1:
+	if PlayerStats.stat_points >= 1: #shows the little plus buttons
 		$Stats/HP/HP_UP.visible = true
 		$Stats/SP/SP_UP.visible = true
 		$Stats/AP/AP_UP.visible = true
@@ -27,7 +27,7 @@ func _process(delta):
 		$Stats/SP/SP_UP.visible = false
 		$Stats/AP/AP_UP.visible = false
 	
-	$Stats/HP/Label.text = str(PlayerStats.Health) + "/" + str(PlayerStats.Max_Health)
+	$Stats/HP/Label.text = str(PlayerStats.Health) + "/" + str(PlayerStats.Max_Health) #updates the display of the playerrs current stats
 	$Stats/SP/Label.text = str(PlayerStats.Stamina) + "/" + str(PlayerStats.Max_Stamina)
 	$Stats/AP/Label.text = str(PlayerStats.attack_power)
 	$Stats/XP/Label.text = str(PlayerStats.xp) + "/" + str(PlayerStats.xp_needed)
@@ -41,28 +41,28 @@ func _process(delta):
 #	pass
 
 
-func _on_MainMenu_pressed():
+func _on_MainMenu_pressed(): #changes the scene to the main menu
 	get_tree().change_scene("res://Ui/MainMenu/MainMenu.tscn")
 	get_tree().paused = false
 	Pause.pause = false
 
 
-func _on_Quit_pressed():
+func _on_Quit_pressed(): #quits the game
 	get_tree().quit()
 
 
-func _on_HP_UP_pressed():
+func _on_HP_UP_pressed(): #increases the players hp
 	PlayerStats.stat_points -= 1
 	PlayerStats.Max_Health += 1
 	PlayerStats.Health = PlayerStats.Max_Health
 
 
-func _on_SP_UP_pressed():
+func _on_SP_UP_pressed(): #increases the players stamina
 	PlayerStats.stat_points -= 1
 	PlayerStats.Max_Stamina += 1
 	PlayerStats.Stamina = PlayerStats.Max_Stamina
 
 
-func _on_AP_UP_pressed():
+func _on_AP_UP_pressed():  #increases the players attack
 	PlayerStats.stat_points -= 1
 	PlayerStats.attack_power += 1

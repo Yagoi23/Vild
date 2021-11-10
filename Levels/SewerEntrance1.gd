@@ -1,5 +1,5 @@
 extends Area2D
-
+#old code
 var can_travel = false
 
 func _process(delta):
@@ -9,7 +9,7 @@ func _process(delta):
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Player"):
-		can_travel = true
+		can_travel = true #makes the indicator visible and allows the player to travel
 		print("yes")
 	#pass # Replace with function body.
 

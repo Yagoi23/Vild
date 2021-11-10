@@ -14,7 +14,7 @@ var velocity = Vector2()
 
 var dir = 1
 
-func _physics_process(delta):
+func _physics_process(delta): #moves the enemy towards the player
 	if follow_player == true:
 		for node in get_tree().get_nodes_in_group("Player"):
 			#dir = (node.global_position.x - global_position.x)#.normalized()
@@ -34,17 +34,17 @@ func _physics_process(delta):
 		dir = dir * -1
 		$RayCast2D.position *= -1
 
-func _on_DetectionZone_area_entered(area):
+func _on_DetectionZone_area_entered(area): #allows this node to follow th player
 	if area.is_in_group("Player"):
 		follow_player = true
 
 
-func _on_DetectionZone_area_exited(area):
+func _on_DetectionZone_area_exited(area): #disallows this node to follow th player
 	if area.is_in_group("Player"):
 		follow_player = false
 
 
-func _on_HitZone_area_entered(area):
+func _on_HitZone_area_entered(area): #hits the player
 	if area.is_in_group("Player"):
 		PlayerStats.hit_player(10)
 
@@ -52,25 +52,24 @@ var health = rand_range(1,1000)
 var player_can_hit = false
 
 func _process(delta):
-	if PlayerStats.Enemy_Sense == true:
-		SPRITE.modulate = Color(255,0,0) # turn sprite red
-		#EnemySenseLight.enabled = true
-	else:
-		SPRITE.modulate = Color(255,255,255) # turn sprite white
-		#EnemySenseLight.enabled = false
+	#if PlayerStats.Enemy_Sense == true:
+	#	SPRITE.modulate = Color(255,0,0) # turn sprite red
+	#	#EnemySenseLight.enabled = true
+	##	SPRITE.modulate = Color(255,255,255) # turn sprite white
+	#	#EnemySenseLight.enabled = false
 	
-	if player_can_hit == true and PlayerStats.attacking == true:
+	if player_can_hit == true and PlayerStats.attacking == true:#gets hit
 		health -= PlayerStats.attack_power
 	
-	if health <= 0:
+	if health <= 0:#dies
 		PlayerStats.xp += rand_range(1,10)
 		queue_free()
 
-func _on_Area2D_area_entered(area):
+func _on_Area2D_area_entered(area): #allows player to attack
 	if area.is_in_group("Player_Attack"):
 		player_can_hit = true
 
 
-func _on_Area2D_area_exited(area):
+func _on_Area2D_area_exited(area): #ddisallows player to attack
 	if area.is_in_group("Player_Attack"):
 		player_can_hit = false

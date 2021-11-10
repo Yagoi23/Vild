@@ -20,7 +20,7 @@ func _on_Area2D_area_entered(area):
 
 
 func _on_Area2D_area_exited(area):
-	if area.is_in_group("Player"):
+	if area.is_in_group("Player"):#hides everything and makes it so the variable can player travel is false
 		can_travel = false
 		print("no")
 		$ArrowDown.visible = false

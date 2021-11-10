@@ -7,7 +7,7 @@ extends Node2D
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready(): #changes the players stats
 	PlayerStats.Max_Health = 1000
 	PlayerStats.Health = 1000
 	PlayerStats.Max_Stamina = 10
@@ -21,7 +21,7 @@ func _ready():
 #	pass
 
 
-func _on_ExitTutorial_area_entered(area):
+func _on_ExitTutorial_area_entered(area): #ssets the players stats to an appropriate value and moves them to the first level
 	if area.is_in_group("Player"):
 		get_tree().change_scene("res://Levels/Ruinous Road/Starting Level.tscn")
 		PlayerStats.Max_Health = 10
